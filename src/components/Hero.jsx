@@ -28,7 +28,7 @@ const Hero = () => {
         My name is Mustafa Tahir. I have over 3 years of experience in WordPress, more than 2 years in React.js and the MERN stack, and about 1 year of experience with Python. I also have experience managing WHM servers and handling clients directly.
         </p>
         <div className='my-8'>
-        <a href='http://localhost/Portfolio-main/Portfolio-main/Mustafa Tahir-CV.pdf' download className='px-6 py-3 w-full rounded-xl mr-4 
+        <a href='https://github.com/Mustafatahir98/Portfolio/blob/main/Mustafa%20Tahir-CV.pdf' download className='px-6 py-3 w-full rounded-xl mr-4 
     bg-gradient-to-br from-orange-500 to-red-500 text-white'>
     Download CV
 </a>
