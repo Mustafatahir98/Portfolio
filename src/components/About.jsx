@@ -2,80 +2,123 @@ import React from 'react';
 import aboutImg from '../assets/about-4.jpg';
 
 const About = () => {
+  const skills = [
+    { name: 'WordPress/PHP', level: 95 },
+    { name: 'MERN Stack', level: 90 },
+    { name: 'Python/Flask', level: 85 },
+    { name: 'CI/CD Pipelines', level: 88 },
+    { name: 'Server Management', level: 92 },
+    { name: 'API Integration', level: 90 },
+  ];
+
   return (
-    <section id="about" className="relative overflow-hidden py-20 bg-gradient-to-br from-gray-900 via-black to-gray-900">
-      {/* Animated background elements */}
-      <div className="absolute -top-20 -left-20 w-96 h-96 bg-gradient-to-r from-orange-500/20 to-red-600/20 rounded-full blur-3xl animate-pulse-slow"></div>
-      <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-gradient-to-r from-red-500/20 to-orange-600/20 rounded-full blur-3xl animate-pulse-slow delay-1000"></div>
+    <section id="about" className="relative overflow-hidden py-24 bg-gradient-to-br from-gray-900 via-black to-gray-900">
+      {/* Holographic grid background */}
+      <div className="absolute inset-0 z-0 opacity-20 [background:radial-gradient(circle_800px_at_100%_200px,#f9731625,transparent)]" />
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Floating particles */}
+      <div className="absolute inset-0 z-0 animate-fade-in">
+        {[...Array(30)].map((_, i) => (
+          <div 
+            key={i}
+            className="absolute w-1 h-1 bg-orange-400 rounded-full"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animation: `float ${5 + Math.random() * 10}s infinite`
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Image Container */}
-          <div className="relative group flex justify-center lg:justify-end">
-            <div className="relative z-10 w-[450px] h-[450px] rounded-2xl overflow-hidden border-4 border-transparent bg-clip-padding backdrop-blur-xl bg-gray-800/30 shadow-2xl">
+          {/* Holographic image panel */}
+          <div className="relative group perspective-1000">
+            <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-black/50 backdrop-blur-xl transform transition-all duration-700 hover:rotate-x-12 hover:rotate-y-12">
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-400/20 to-red-600/20" />
               <img 
                 src={aboutImg} 
                 alt="Mustafa Tahir" 
-                className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-full object-cover opacity-90 mix-blend-luminosity"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              <div className="absolute inset-0 [background:radial-gradient(circle_at_center,transparent_60%,#000_100%)]" />
+              <div className="absolute -inset-8 bg-gradient-to-r from-orange-400 to-red-600 rounded-3xl opacity-0 group-hover:opacity-10 blur-2xl transition-opacity duration-300" />
             </div>
-            <div className="absolute -inset-8 bg-gradient-to-r from-orange-400 to-red-600 rounded-2xl opacity-0 group-hover:opacity-20 blur-2xl transition-opacity duration-300"></div>
           </div>
 
           {/* Content */}
-          <div className="relative z-10">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8">
-              <span className="bg-gradient-to-r from-orange-400 via-red-500 to-orange-400 bg-clip-text text-transparent bg-300% animate-gradient-shine">
-                About Me
+          <div className="space-y-8">
+            <h2 className="text-5xl md:text-6xl font-bold">
+              <span className="bg-gradient-to-r from-orange-400 via-red-500 to-orange-400 bg-clip-text text-transparent">
+                Digital Craftsmanship
               </span>
+              <div className="h-1 w-24 bg-gradient-to-r from-orange-400 to-red-600 mt-4 rounded-full" />
             </h2>
 
-            <ul className="space-y-6">
-              {[
-                "Proficient in WordPress, PHP, C++, Python, and the MERN Stack",
-                "Skilled in Monday.com for task management and project execution",
-                "Experienced in CI/CD workflows with GitHub Actions",
-                "Backend development using Node.js and Python Flask",
-                "WordPress speed optimization & custom plugin development",
-                "OAuth 2.0 integrations & task automation"
-              ].map((item, index) => (
-                <li 
+            <p className="text-xl text-gray-300 leading-relaxed">
+              Full-stack architect specializing in high-performance web solutions. With 3+ years of experience, I bridge the gap between technical excellence and business value through:
+            </p>
+
+            {/* Skill matrix */}
+            <div className="grid grid-cols-2 gap-4">
+              {skills.map((skill, index) => (
+                <div 
                   key={index}
-                  className="flex items-start pl-8 relative before:absolute before:left-0 before:top-2 before:w-4 before:h-4 before:bg-gradient-to-r before:from-orange-400 before:to-red-600 before:rounded-full before:animate-pulse"
+                  className="p-4 rounded-xl border border-white/10 bg-gradient-to-b from-black/30 to-transparent hover:border-orange-400/30 transition-all group"
                 >
-                  <div className="bg-gradient-to-r from-orange-400/10 to-red-600/10 backdrop-blur-sm p-6 rounded-xl w-full transition-all duration-300 hover:translate-x-4 hover:shadow-xl hover:shadow-orange-500/10">
-                    <p className="text-gray-300 text-lg leading-relaxed">{item}</p>
+                  <div className="flex justify-between mb-2">
+                    <span className="text-gray-300 group-hover:text-orange-400 transition-colors">
+                      {skill.name}
+                    </span>
+                    <span className="text-orange-400/80">{skill.level}%</span>
                   </div>
-                </li>
+                  <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
+                    <div 
+                      className="h-full bg-gradient-to-r from-orange-400 to-red-600 rounded-full transition-all duration-500"
+                      style={{ width: `${skill.level}%` }}
+                    />
+                  </div>
+                </div>
               ))}
-            </ul>
+            </div>
+
+            {/* Unique selling points */}
+            <div className="grid grid-cols-2 gap-4 mt-8">
+              <div className="p-4 rounded-xl border border-white/10 bg-black/20 hover:bg-black/40 transition-all">
+                <h3 className="text-orange-400 mb-2">🚀 Performance First</h3>
+                <p className="text-sm text-gray-300">Lighthouse-optimized solutions with 90+ scores</p>
+              </div>
+              <div className="p-4 rounded-xl border border-white/10 bg-black/20 hover:bg-black/40 transition-all">
+                <h3 className="text-orange-400 mb-2">🔒 Secure by Design</h3>
+                <p className="text-sm text-gray-300">Enterprise-grade security implementations</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <style jsx global>{`
-        @keyframes gradient-shine {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
+        @keyframes float {
+          0%, 100% { transform: translateY(0) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(10deg); }
         }
 
-        @keyframes pulse-slow {
-          0%, 100% { opacity: 0.8; transform: scale(1); }
-          50% { opacity: 0.4; transform: scale(0.95); }
+        @keyframes fade-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
 
-        .animate-gradient-shine {
-          animation: gradient-shine 6s ease infinite;
+        .perspective-1000 {
+          perspective: 1000px;
         }
 
-        .animate-pulse-slow {
-          animation: pulse-slow 3s ease-in-out infinite;
+        .rotate-x-12 {
+          transform: rotateX(12deg);
         }
 
-        .delay-1000 {
-          animation-delay: 1s;
+        .rotate-y-12 {
+          transform: rotateY(12deg);
         }
       `}</style>
     </section>
