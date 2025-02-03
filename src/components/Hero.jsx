@@ -4,34 +4,52 @@ import { TypeAnimation } from 'react-type-animation';
 
 const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden pt-[70px]"> {/* Added padding-top */}
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-32 -left-32 w-96 h-96 bg-gradient-to-r from-orange-500/10 to-red-600/10 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-gradient-to-r from-red-500/10 to-orange-600/10 rounded-full blur-3xl animate-pulse-slow delay-1000" />
+    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden pt-20">
+      {/* Animated particles */}
+      <div className="absolute inset-0 z-0">
+        {[...Array(30)].map((_, i) => (
+          <div 
+            key={i}
+            className="absolute w-1 h-1 bg-orange-400 rounded-full animate-float"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 2}s`
+            }}
+          />
+        ))}
       </div>
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center px-4 sm:px-6 lg:px-8 py-16 relative z-10">
-        {/* Image Container */}
+        {/* Circular Image Container */}
         <div className="relative w-full max-w-[500px] mx-auto">
-          <div className="absolute -inset-4 bg-gradient-to-r from-orange-400 to-red-600 rounded-full opacity-10 blur-3xl animate-pulse" />
-          <div className="relative aspect-square rounded-3xl overflow-hidden border-2 border-white/10 backdrop-blur-xl bg-gray-800/30 transform transition-transform duration-500 hover:scale-[1.01]">
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-red-600 rounded-full blur-3xl opacity-20 animate-pulse" />
+          
+          <div className="relative group aspect-square rounded-full overflow-hidden border-4 border-transparent bg-clip-padding backdrop-blur-xl">
+            {/* Rotating outline */}
+            <div className="absolute inset-0 rounded-full border-[3px] border-transparent animate-rotate-border">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-orange-400 to-red-600 opacity-30" />
+            </div>
+            
             <img 
               src={heroImg} 
               alt="Mustafa Tahir" 
-              className="w-full h-full object-cover scale-[1.01]"
+              className="w-full h-full object-cover transform transition-all duration-500 group-hover:scale-105"
             />
-            <div className="absolute -bottom-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-400/50 to-transparent" />
+            
+            {/* Floating effect */}
+            <div className="absolute inset-0 rounded-full shadow-2xl animate-float-image" />
           </div>
-          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-4/5 h-4 bg-gradient-to-r from-orange-400/20 to-red-600/20 blur-2xl rounded-full" />
+          
+          {/* Outer glow */}
+          <div className="absolute -inset-8 bg-gradient-to-r from-orange-400 to-red-600 rounded-full opacity-0 group-hover:opacity-10 blur-2xl transition-opacity duration-300" />
         </div>
 
         {/* Content Container */}
         <div className="space-y-8 text-center lg:text-left">
           <div className="overflow-hidden">
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 animate-mask-reveal">
-              <span className="bg-gradient-to-r from-orange-300 via-red-400 to-orange-300 bg-clip-text text-transparent">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-orange-300 via-red-400 to-orange-300 bg-clip-text text-transparent animate-text-glow">
                 Mustafa Tahir
               </span>
             </h1>
@@ -49,7 +67,7 @@ const Hero = () => {
               ]}
               wrapper="div"
               speed={40}
-              className="text-gray-300 font-mono"
+              className="text-gray-300 font-mono bg-gradient-to-r from-gray-300 to-gray-400 bg-clip-text text-transparent"
               cursor={true}
               repeat={Infinity}
               style={{ display: 'inline-block' }}
@@ -67,9 +85,9 @@ const Hero = () => {
             <a
               href="https://drive.google.com/file/d/1ke9JYe_oFKXzc91tAEv70zoKrvKp0ta3/view?usp=sharing"
               download
-              className="relative px-8 py-4 rounded-2xl text-white font-medium flex items-center gap-3 group overflow-hidden"
+              className="relative px-8 py-4 rounded-full text-white font-medium flex items-center gap-3 group overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/20"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-red-600 opacity-100 group-hover:opacity-90 transition-opacity" />
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-red-600 opacity-100" />
               <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-red-500 opacity-0 group-hover:opacity-100 transition-opacity mix-blend-overlay" />
               <span className="relative z-10">Download CV</span>
               <svg className="relative z-10 w-5 h-5 animate-bounce-vertical" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -79,23 +97,22 @@ const Hero = () => {
 
             <a
               href="#contact"
-              className="relative px-8 py-4 rounded-2xl text-white font-medium flex items-center gap-3 group overflow-hidden border border-white/20 hover:border-transparent"
+              className="relative px-8 py-4 rounded-full text-white font-medium flex items-center gap-3 group overflow-hidden border-2 border-orange-400/30 hover:border-transparent transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/20"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-orange-500/0 to-red-600/0 opacity-0 group-hover:opacity-100 transition-opacity" />
               <span className="relative z-10">Let's Connect</span>
-              <svg className="relative z-10 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
+              <div className="relative z-10 w-5 h-5 bg-orange-400 rounded-full animate-pulse" />
             </a>
           </div>
 
           {/* Social Links */}
-          <div className="flex justify-center lg:justify-start gap-5 mt-16">
+          <div className="flex justify-center lg:justify-start gap-5 mt-16 animate-staggered-appear">
             {['github', 'linkedin', 'email'].map((icon, index) => (
               <a 
                 key={index}
                 href="#"
-                className="p-3 rounded-xl bg-white/5 backdrop-blur-lg hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 shadow-lg hover:shadow-xl border border-white/10 hover:border-orange-400/30"
+                className="p-3 rounded-full bg-white/5 backdrop-blur-lg hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 shadow-lg hover:shadow-xl border border-white/10 hover:border-orange-400/30"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
                 {icon === 'github' && (
                   <svg className="w-7 h-7 text-gray-300 hover:text-orange-400 transition-colors" fill="currentColor" viewBox="0 0 24 24">
@@ -119,31 +136,50 @@ const Hero = () => {
       </div>
 
       <style jsx global>{`
-        @keyframes mask-reveal {
-          0% { clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); }
-          100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+        @keyframes rotate-border {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
         }
 
-        @keyframes bounce-vertical {
+        @keyframes text-glow {
+          0%, 100% { text-shadow: 0 0 10px rgba(251, 146, 60, 0); }
+          50% { text-shadow: 0 0 20px rgba(251, 146, 60, 0.5); }
+        }
+
+        @keyframes float {
+          0%, 100% { transform: translateY(0) scale(1); }
+          50% { transform: translateY(-20px) scale(1.1); }
+        }
+
+        @keyframes float-image {
           0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-4px); }
+          50% { transform: translateY(-20px); }
         }
 
-        @keyframes pulse-slow {
-          0%, 100% { opacity: 0.1; }
-          50% { opacity: 0.2; }
+        @keyframes staggered-appear {
+          0% { opacity: 0; transform: translateY(20px); }
+          100% { opacity: 1; transform: translateY(0); }
         }
 
-        .animate-mask-reveal {
-          animation: mask-reveal 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        .animate-rotate-border {
+          animation: rotate-border 20s linear infinite;
         }
 
-        .animate-bounce-vertical {
-          animation: bounce-vertical 1.5s ease-in-out infinite;
+        .animate-text-glow {
+          animation: text-glow 3s ease-in-out infinite;
         }
 
-        .animate-pulse {
-          animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-float-image {
+          animation: float-image 6s ease-in-out infinite;
+        }
+
+        .animate-staggered-appear a {
+          animation: staggered-appear 0.6s ease-out forwards;
+          opacity: 0;
         }
       `}</style>
     </section>
