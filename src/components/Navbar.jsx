@@ -90,35 +90,35 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <div className={`md:hidden fixed inset-0 z-40 transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${nav ? 'translate-x-0' : 'translate-x-full'}`}>
+      {/* Mobile Menu - Fixed Version */}
+      <div className={`md:hidden fixed inset-0 z-[60] transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${nav ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="absolute inset-0 bg-black/95 backdrop-blur-2xl">
-          <div className="flex flex-col items-center justify-center h-full space-y-8">
+          <div className="flex flex-col items-center justify-center h-full space-y-8 p-4">
             <a 
               href="#home" 
               onClick={(e) => scrollToSection(e, 'home')}
-              className="text-3xl font-medium text-gray-300 hover:text-orange-400 transition-colors"
+              className="text-3xl font-medium text-gray-300 hover:text-orange-400 transition-colors px-4 py-2"
             >
               Home
             </a>
             <a 
               href="#about" 
               onClick={(e) => scrollToSection(e, 'about')}
-              className="text-3xl font-medium text-gray-300 hover:text-orange-400 transition-colors"
+              className="text-3xl font-medium text-gray-300 hover:text-orange-400 transition-colors px-4 py-2"
             >
               About
             </a>
             <a 
               href="#work" 
               onClick={(e) => scrollToSection(e, 'work')}
-              className="text-3xl font-medium text-gray-300 hover:text-orange-400 transition-colors"
+              className="text-3xl font-medium text-gray-300 hover:text-orange-400 transition-colors px-4 py-2"
             >
               Work
             </a>
             <a 
               href="#contact" 
               onClick={(e) => scrollToSection(e, 'contact')}
-              className="text-3xl font-medium text-gray-300 hover:text-orange-400 transition-colors"
+              className="text-3xl font-medium text-gray-300 hover:text-orange-400 transition-colors px-4 py-2"
             >
               Contact
             </a>
