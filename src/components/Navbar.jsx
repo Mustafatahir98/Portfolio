@@ -84,9 +84,10 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed top-0 right-0 bottom-0 w-64 bg-black/95 backdrop-blur-xl z-50 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 bottom-0 w-64 z-50 transform transition-transform duration-300 ease-in-out ${
           nav ? 'translate-x-0' : 'translate-x-full'
         }`}
+        style={{ backgroundColor: '#fcac72' }}
       >
         <nav className="flex flex-col mt-24 space-y-6 px-6">
           {['home', 'about', 'work', 'contact'].map((section) => (
@@ -94,7 +95,7 @@ const Navbar = () => {
               key={section}
               href={`#${section}`}
               onClick={(e) => scrollToSection(e, section)}
-              className="text-xl font-semibold text-gray-300 hover:text-orange-400 transition-colors"
+              className="text-xl font-semibold text-white hover:text-black transition-colors"
             >
               {section.charAt(0).toUpperCase() + section.slice(1)}
             </a>
