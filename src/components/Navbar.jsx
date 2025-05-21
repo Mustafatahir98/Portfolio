@@ -48,14 +48,14 @@ const Navbar = () => {
             className="flex items-center space-x-2 group"
           >
             <div className="relative w-10 h-10 transition-transform duration-500 group-hover:rotate-[30deg]">
-              <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-red-600 rounded-full blur opacity-30 animate-pulse"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-rose-500 rounded-full blur opacity-30 animate-pulse"></div>
               <img
                 src={logo}
                 alt="Logo"
                 className="relative z-10 w-full h-full object-contain p-1"
               />
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
+            <span className="text-2xl font-bold bg-gradient-to-r from-amber-400 to-rose-500 bg-clip-text text-transparent">
               Mustafa Tahir
             </span>
           </a>
@@ -70,7 +70,7 @@ const Navbar = () => {
                 className="relative px-4 py-2 text-gray-300 hover:text-white transition-all group"
               >
                 <span className="relative z-10 capitalize">{section}</span>
-                <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-orange-400 to-red-600 origin-left transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-amber-400 to-rose-500 origin-left transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
               </a>
             ))}
           </div>
@@ -82,7 +82,7 @@ const Navbar = () => {
             aria-label="Toggle menu"
           >
             {nav ? (
-              <AiOutlineClose className="w-6 h-6 text-orange-400" />
+              <AiOutlineClose className="w-6 h-6 text-amber-400" />
             ) : (
               <AiOutlineMenu className="w-6 h-6 text-gray-300" />
             )}
@@ -94,7 +94,7 @@ const Navbar = () => {
       <div
         className={`fixed top-0 right-0 h-screen z-50 transform transition-transform duration-300 ease-in-out
           w-[70vw] rounded-l-3xl
-          bg-gradient-to-br from-orange-400 via-yellow-300 to-red-600
+          bg-gradient-to-br from-amber-400 via-orange-300 to-rose-500
           shadow-lg drop-shadow-xl
           backdrop-blur-md
           ${
@@ -104,7 +104,7 @@ const Navbar = () => {
       >
         <button
           onClick={handleNav}
-          className="self-end m-6 text-white text-3xl hover:text-black transition-colors"
+          className="self-end m-6 text-white text-3xl hover:text-gray-900 transition-colors"
           aria-label="Close menu"
         >
           <AiOutlineClose />
@@ -115,7 +115,7 @@ const Navbar = () => {
               key={section}
               href={`#${section}`}
               onClick={(e) => scrollToSection(e, section)}
-              className="hover:text-black transition-colors"
+              className="hover:text-gray-900 transition-colors"
             >
               {section.charAt(0).toUpperCase() + section.slice(1)}
             </a>
