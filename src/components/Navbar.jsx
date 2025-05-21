@@ -25,7 +25,6 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Disable body scroll when mobile menu is open
   useEffect(() => {
     if (nav) {
       document.body.style.overflow = 'hidden';
@@ -91,21 +90,26 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu - Fullscreen Overlay */}
+      {/* Mobile Menu - Right Sidebar with Glowy Gradient */}
       <div
-        className={`fixed inset-0 z-50 flex flex-col bg-[#fcac72] transform transition-transform duration-300 ease-in-out ${
-          nav ? 'translate-x-0' : 'translate-x-full'
-        }`}
-        style={{ height: '100vh' }}
+        className={`fixed top-0 right-0 h-screen z-50 transform transition-transform duration-300 ease-in-out
+          w-[70vw] rounded-l-3xl
+          bg-gradient-to-br from-orange-400 via-yellow-300 to-red-600
+          shadow-lg drop-shadow-xl
+          backdrop-blur-md
+          ${
+            nav ? 'translate-x-0' : 'translate-x-full'
+          }
+        `}
       >
         <button
           onClick={handleNav}
-          className="self-end p-4 text-white text-3xl hover:text-black transition-colors"
+          className="self-end m-6 text-white text-3xl hover:text-black transition-colors"
           aria-label="Close menu"
         >
           <AiOutlineClose />
         </button>
-        <nav className="flex flex-col flex-grow justify-center items-center space-y-10 text-white text-2xl font-semibold">
+        <nav className="flex flex-col justify-center items-center h-[calc(100vh-72px)] space-y-10 text-white text-2xl font-semibold px-8">
           {['home', 'about', 'work', 'contact'].map((section) => (
             <a
               key={section}
