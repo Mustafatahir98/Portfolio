@@ -6,7 +6,7 @@ const About = () => {
     { name: 'WordPress/PHP' },
     { name: 'MERN Stack' },
     { name: 'Python/Flask' },
-    { name: 'CI/CD Pipelines' },
+    { name: 'OAuth 2.0' },
     { name: 'Server Management' },
     { name: 'API Integration' },
   ];
