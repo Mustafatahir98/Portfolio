@@ -4,6 +4,14 @@ import css from '../assets/css.png'
 import javascript from '../assets/javascript.png'
 import react from '../assets/react.png'
 import node from '../assets/node.png'
+import nextjs from '../assets/nextjs.png'
+import php from '../assets/php.png'
+import aws from '../assets/aws.png'
+import azure from '../assets/azure.png'
+import hubspot from '../assets/hubspot.png'
+import salesmessage from '../assets/salesmessage.png'
+import express from '../assets/express.png'
+import wordpress from '../assets/wordpress.png'
 
 const Skills = () => {
   const skills = [
@@ -12,6 +20,14 @@ const Skills = () => {
     { name: 'JavaScript', icon: javascript },
     { name: 'React', icon: react },
     { name: 'Node.js', icon: node },
+    { name: 'Next.js', icon: nextjs },
+    { name: 'PHP', icon: php },
+    { name: 'AWS', icon: aws },
+    { name: 'Azure', icon: azure },
+    { name: 'HubSpot', icon: hubspot },
+    { name: 'SalesMessage', icon: salesmessage },
+    { name: 'Express', icon: express },
+    { name: 'WordPress', icon: wordpress },
   ]
 
   return (
