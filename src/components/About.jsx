@@ -1,5 +1,4 @@
 import React from 'react';
-import aboutImg from '../assets/about-4.jpg';
 
 const About = () => {
   const skills = [
@@ -11,114 +10,124 @@ const About = () => {
     { name: 'API Integration', level: 90 },
   ];
 
+  const achievements = [
+    { icon: "💡", title: "Performance First", desc: "Lighthouse-optimized solutions with 90+ scores" },
+    { icon: "🔒", title: "Secure by Design", desc: "Enterprise-grade security implementations" },
+    { icon: "🔄", title: "Scalable Architecture", desc: "Solutions that grow with your business" },
+    { icon: "⚡", title: "Rapid Development", desc: "Agile workflow with continuous delivery" }
+  ];
+
   return (
-    <section id="about" className="relative overflow-hidden py-24 bg-gradient-to-br from-gray-900 via-black to-gray-900">
-      {/* Holographic grid background */}
-      <div className="absolute inset-0 z-0 opacity-20 [background:radial-gradient(circle_800px_at_100%_200px,#f9731625,transparent)]" />
+    <section id="about" className="py-24 bg-slate-950 relative overflow-hidden">
+      {/* Subtle gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-indigo-900/20 via-slate-950 to-purple-900/20" />
       
-      {/* Floating particles */}
-      <div className="absolute inset-0 z-0 animate-fade-in">
-        {[...Array(30)].map((_, i) => (
+      {/* Animated accent lines */}
+      <div className="absolute inset-0 overflow-hidden opacity-20">
+        {[...Array(3)].map((_, i) => (
           <div 
             key={i}
-            className="absolute w-1 h-1 bg-orange-400 rounded-full"
+            className="absolute h-px bg-gradient-to-r from-transparent via-indigo-500 to-transparent w-full opacity-70"
             style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animation: `float ${5 + Math.random() * 10}s infinite`
+              top: `${25 + i * 25}%`,
+              left: 0,
+              animation: `flow 8s ${i * 2}s infinite linear`
             }}
           />
         ))}
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section header */}
+        <div className="text-center mb-16">
+          <h2 className="inline-block text-sm font-semibold tracking-wider text-indigo-400 uppercase mb-2">About Me</h2>
+          <h3 className="text-4xl md:text-5xl font-bold text-white mb-6">Digital Craftsmanship</h3>
+          <div className="h-1 w-20 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto rounded-full" />
+        </div>
+
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Holographic image panel */}
-          <div className="relative group perspective-1000">
-            <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-black/50 backdrop-blur-xl transform transition-all duration-700 hover:rotate-x-12 hover:rotate-y-12">
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-400/20 to-red-600/20" />
-              <img 
-                src={aboutImg} 
-                alt="Mustafa Tahir" 
-                className="w-full h-full object-cover opacity-90 mix-blend-luminosity"
-              />
-              <div className="absolute inset-0 [background:radial-gradient(circle_at_center,transparent_60%,#000_100%)]" />
-              <div className="absolute -inset-8 bg-gradient-to-r from-orange-400 to-red-600 rounded-3xl opacity-0 group-hover:opacity-10 blur-2xl transition-opacity duration-300" />
+          {/* Profile content */}
+          <div className="order-2 lg:order-1 space-y-8">
+            <p className="text-lg text-slate-300 leading-relaxed">
+              Full-stack architect specializing in high-performance web solutions. With 3+ years of experience, 
+              I bridge the gap between technical excellence and business value through innovative, robust, and scalable solutions.
+            </p>
+
+            {/* Skills showcase with more elegant visualization */}
+            <div className="space-y-6">
+              <h4 className="text-xl font-semibold text-white">Core Expertise</h4>
+              <div className="space-y-4">
+                {skills.map((skill, index) => (
+                  <div key={index} className="space-y-2">
+                    <div className="flex justify-between">
+                      <span className="text-slate-300">{skill.name}</span>
+                      <span className="text-indigo-400">{skill.level}%</span>
+                    </div>
+                    <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                      <div 
+                        className="h-full bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full"
+                        style={{ width: `${skill.level}%`, transition: "width 1s ease-in-out" }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Achievement cards with clean, minimalist design */}
+            <div>
+              <h4 className="text-xl font-semibold text-white mb-6">Development Philosophy</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {achievements.map((item, index) => (
+                  <div 
+                    key={index}
+                    className="p-5 rounded-lg bg-slate-900/50 border border-slate-800 hover:border-indigo-500/30 transition-all group"
+                  >
+                    <div className="flex items-center mb-3">
+                      <span className="text-2xl mr-3">{item.icon}</span>
+                      <h5 className="text-indigo-400 font-medium group-hover:text-indigo-300 transition-colors">
+                        {item.title}
+                      </h5>
+                    </div>
+                    <p className="text-slate-400 text-sm">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Content */}
-          <div className="space-y-8">
-            <h2 className="text-5xl md:text-6xl font-bold">
-              <span className="bg-gradient-to-r from-orange-400 via-red-500 to-orange-400 bg-clip-text text-transparent">
-                Digital Craftsmanship
-              </span>
-              <div className="h-1 w-24 bg-gradient-to-r from-orange-400 to-red-600 mt-4 rounded-full" />
-            </h2>
-
-            <p className="text-xl text-gray-300 leading-relaxed">
-              Full-stack architect specializing in high-performance web solutions. With 3+ years of experience, I bridge the gap between technical excellence and business value through:
-            </p>
-
-            {/* Skill matrix */}
-            <div className="grid grid-cols-2 gap-4">
-              {skills.map((skill, index) => (
-                <div 
-                  key={index}
-                  className="p-4 rounded-xl border border-white/10 bg-gradient-to-b from-black/30 to-transparent hover:border-orange-400/30 transition-all group"
-                >
-                  <div className="flex justify-between mb-2">
-                    <span className="text-gray-300 group-hover:text-orange-400 transition-colors">
-                      {skill.name}
-                    </span>
-                    <span className="text-orange-400/80">{skill.level}%</span>
-                  </div>
-                  <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
-                    <div 
-                      className="h-full bg-gradient-to-r from-orange-400 to-red-600 rounded-full transition-all duration-500"
-                      style={{ width: `${skill.level}%` }}
-                    />
-                  </div>
+          {/* Modern image presentation */}
+          <div className="order-1 lg:order-2">
+            <div className="relative rounded-2xl overflow-hidden group">
+              {/* Main image with overlay */}
+              <div className="aspect-w-4 aspect-h-5 bg-slate-900 rounded-2xl overflow-hidden">
+                <div className="w-full h-full relative">
+                  <div className="absolute inset-0 bg-gradient-to-tl from-indigo-600/20 to-purple-700/30 mix-blend-overlay z-10" />
+                  {/* Note: In a real implementation, use next/image or proper image optimization */}
+                  <img 
+                    src="/profile-image.jpg" 
+                    alt="Mustafa Tahir" 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
                 </div>
-              ))}
-            </div>
-
-            {/* Unique selling points */}
-            <div className="grid grid-cols-2 gap-4 mt-8">
-              <div className="p-4 rounded-xl border border-white/10 bg-black/20 hover:bg-black/40 transition-all">
-                <h3 className="text-orange-400 mb-2">🚀 Performance First</h3>
-                <p className="text-sm text-gray-300">Lighthouse-optimized solutions with 90+ scores</p>
               </div>
-              <div className="p-4 rounded-xl border border-white/10 bg-black/20 hover:bg-black/40 transition-all">
-                <h3 className="text-orange-400 mb-2">🔒 Secure by Design</h3>
-                <p className="text-sm text-gray-300">Enterprise-grade security implementations</p>
-              </div>
+              
+              {/* Decorative elements */}
+              <div className="absolute -top-4 -right-4 w-24 h-24 border-t-2 border-r-2 border-indigo-500/30 rounded-tr-2xl" />
+              <div className="absolute -bottom-4 -left-4 w-24 h-24 border-b-2 border-l-2 border-indigo-500/30 rounded-bl-2xl" />
+              
+              {/* Glowing accent */}
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-1/2 bg-indigo-600/20 blur-3xl rounded-full" />
             </div>
           </div>
         </div>
       </div>
 
-      <style jsx global>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-20px) rotate(10deg); }
-        }
-
-        @keyframes fade-in {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-
-        .perspective-1000 {
-          perspective: 1000px;
-        }
-
-        .rotate-x-12 {
-          transform: rotateX(12deg);
-        }
-
-        .rotate-y-12 {
-          transform: rotateY(12deg);
+      {/* CSS animations */}
+      <style jsx>{`
+        @keyframes flow {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
         }
       `}</style>
     </section>
