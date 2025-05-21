@@ -14,11 +14,8 @@ const Skills = () => {
     { name: 'Node.js', icon: node },
     { name: 'Next.js', icon: 'https://cdn.simpleicons.org/nextdotjs/000000/fff.svg' },
     { name: 'PHP', icon: 'https://cdn.simpleicons.org/php/777BB4/fff.svg' },
-    { name: 'AWS', icon: 'https://cdn.simpleicons.org/amazonaws/FF9900/fff.svg' },
-    { name: 'Azure', icon: 'https://cdn.simpleicons.org/microsoftazure/0089D6/fff.svg' },
     { name: 'HubSpot', icon: 'https://cdn.simpleicons.org/hubspot/FF7A59/fff.svg' },
     { name: 'SalesMessage', icon: 'https://cdn.simpleicons.org/salesforce/1796E5/fff.svg' }, // Approximation
-    { name: 'Express', icon: 'https://cdn.simpleicons.org/express/000000/fff.svg' },
     { name: 'WordPress', icon: 'https://cdn.simpleicons.org/wordpress/21759B/fff.svg' },
   ]
 
