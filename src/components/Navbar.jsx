@@ -100,32 +100,32 @@ const Navbar = () => {
           nav ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="flex flex-col items-center justify-center h-full space-y-8">
+        <div className="flex flex-col items-center justify-start pt-24 space-y-4 px-4 h-full overflow-auto">
           <a
             href="#home"
             onClick={(e) => scrollToSection(e, 'home')}
-            className="text-3xl font-medium text-gray-300 hover:text-orange-400 transition-colors"
+            className="text-2xl font-medium text-gray-300 hover:text-orange-400 transition-colors"
           >
             Home
           </a>
           <a
             href="#about"
             onClick={(e) => scrollToSection(e, 'about')}
-            className="text-3xl font-medium text-gray-300 hover:text-orange-400 transition-colors"
+            className="text-2xl font-medium text-gray-300 hover:text-orange-400 transition-colors"
           >
             About
           </a>
           <a
             href="#work"
             onClick={(e) => scrollToSection(e, 'work')}
-            className="text-3xl font-medium text-gray-300 hover:text-orange-400 transition-colors"
+            className="text-2xl font-medium text-gray-300 hover:text-orange-400 transition-colors"
           >
             Work
           </a>
           <a
             href="#contact"
             onClick={(e) => scrollToSection(e, 'contact')}
-            className="text-3xl font-medium text-gray-300 hover:text-orange-400 transition-colors"
+            className="text-2xl font-medium text-gray-300 hover:text-orange-400 transition-colors"
           >
             Contact
           </a>
