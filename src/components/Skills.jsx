@@ -10,13 +10,14 @@ const Skills = () => {
     { name: 'HTML', icon: html },
     { name: 'CSS', icon: css },
     { name: 'JavaScript', icon: javascript },
+     { name: 'PHP', icon: 'https://cdn.simpleicons.org/php/777BB4/fff.svg' },
+     { name: 'WordPress', icon: 'https://cdn.simpleicons.org/wordpress/21759B/fff.svg' },
     { name: 'React', icon: react },
+     { name: 'Next.js', icon: 'https://cdn.simpleicons.org/nextdotjs/ffffff.svg' },
     { name: 'Node.js', icon: node },
-    { name: 'Next.js', icon: 'https://cdn.simpleicons.org/nextdotjs/000000/fff.svg' },
-    { name: 'PHP', icon: 'https://cdn.simpleicons.org/php/777BB4/fff.svg' },
     { name: 'HubSpot', icon: 'https://cdn.simpleicons.org/hubspot/FF7A59/fff.svg' },
     { name: 'SalesMessage', icon: 'https://cdn.simpleicons.org/salesforce/1796E5/fff.svg' }, // Approximation
-    { name: 'WordPress', icon: 'https://cdn.simpleicons.org/wordpress/21759B/fff.svg' },
+   
   ]
 
   return (
