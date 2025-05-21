@@ -13,21 +13,21 @@ const Navbar = () => {
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setNav(false); // Close the mobile menu after navigation
+      setNav(false); // Close mobile menu after click
     }
   };
 
   useEffect(() => {
-    const handleScroll = () => {
+    const onScroll = () => {
       setScroll(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
     <nav
-      className={`fixed w-full top-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         scroll ? 'backdrop-blur-xl bg-black/80 py-3' : 'backdrop-blur-lg bg-black/40 py-4'
       }`}
     >
@@ -54,36 +54,24 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <a
-              href="#about"
-              onClick={(e) => scrollToSection(e, 'about')}
-              className="relative px-4 py-2 text-gray-300 hover:text-white transition-all group"
-            >
-              <span className="relative z-10">About</span>
-              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-orange-400 to-red-600 origin-left transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-            </a>
-            <a
-              href="#work"
-              onClick={(e) => scrollToSection(e, 'work')}
-              className="relative px-4 py-2 text-gray-300 hover:text-white transition-all group"
-            >
-              <span className="relative z-10">Work</span>
-              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-orange-400 to-red-600 origin-left transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-            </a>
-            <a
-              href="#contact"
-              onClick={(e) => scrollToSection(e, 'contact')}
-              className="relative px-4 py-2 text-gray-300 hover:text-white transition-all group"
-            >
-              <span className="relative z-10">Contact</span>
-              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-orange-400 to-red-600 origin-left transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-            </a>
+            {['about', 'work', 'contact'].map((section) => (
+              <a
+                key={section}
+                href={`#${section}`}
+                onClick={(e) => scrollToSection(e, section)}
+                className="relative px-4 py-2 text-gray-300 hover:text-white transition-all group"
+              >
+                <span className="relative z-10 capitalize">{section}</span>
+                <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-orange-400 to-red-600 origin-left transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+              </a>
+            ))}
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={handleNav}
             className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
+            aria-label="Toggle menu"
           >
             {nav ? (
               <AiOutlineClose className="w-6 h-6 text-orange-400" />
@@ -96,44 +84,23 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-2xl transition-transform duration-500 ease-in-out ${
+        className={`fixed top-0 right-0 bottom-0 w-64 bg-black/95 backdrop-blur-xl z-50 transform transition-transform duration-300 ease-in-out ${
           nav ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="flex flex-col items-center justify-start pt-24 space-y-4 px-4 h-full overflow-auto">
-          <a
-            href="#home"
-            onClick={(e) => scrollToSection(e, 'home')}
-            className="text-2xl font-medium text-gray-300 hover:text-orange-400 transition-colors"
-          >
-            Home
-          </a>
-          <a
-            href="#about"
-            onClick={(e) => scrollToSection(e, 'about')}
-            className="text-2xl font-medium text-gray-300 hover:text-orange-400 transition-colors"
-          >
-            About
-          </a>
-          <a
-            href="#work"
-            onClick={(e) => scrollToSection(e, 'work')}
-            className="text-2xl font-medium text-gray-300 hover:text-orange-400 transition-colors"
-          >
-            Work
-          </a>
-          <a
-            href="#contact"
-            onClick={(e) => scrollToSection(e, 'contact')}
-            className="text-2xl font-medium text-gray-300 hover:text-orange-400 transition-colors"
-          >
-            Contact
-          </a>
-        </div>
+        <nav className="flex flex-col mt-24 space-y-6 px-6">
+          {['home', 'about', 'work', 'contact'].map((section) => (
+            <a
+              key={section}
+              href={`#${section}`}
+              onClick={(e) => scrollToSection(e, section)}
+              className="text-xl font-semibold text-gray-300 hover:text-orange-400 transition-colors"
+            >
+              {section.charAt(0).toUpperCase() + section.slice(1)}
+            </a>
+          ))}
+        </nav>
       </div>
-
-      {/* Animated Border */}
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-orange-400/50 to-transparent" />
     </nav>
   );
 };
