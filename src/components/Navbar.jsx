@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import logo from '../assets/favicon.png';
 
 const Navbar = () => {
@@ -13,22 +12,30 @@ const Navbar = () => {
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setNav(false); // Close the mobile menu after navigation
+      setNav(false);
     }
   };
 
   useEffect(() => {
-    const handleScroll = () => {
+    const onScroll = () => {
       setScroll(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  useEffect(() => {
+    if (nav) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [nav]);
 
   return (
     <nav
-      className={`fixed w-full top-0 z-50 transition-all duration-500 ${
-        scroll ? 'backdrop-blur-xl bg-black/80 py-3' : 'backdrop-blur-lg bg-black/40 py-4'
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        scroll ? 'bg-black/90 shadow-md py-2' : 'bg-black/60 py-3'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -54,86 +61,74 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <a
-              href="#about"
-              onClick={(e) => scrollToSection(e, 'about')}
-              className="relative px-4 py-2 text-gray-300 hover:text-white transition-all group"
-            >
-              <span className="relative z-10">About</span>
-              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-orange-400 to-red-600 origin-left transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-            </a>
-            <a
-              href="#work"
-              onClick={(e) => scrollToSection(e, 'work')}
-              className="relative px-4 py-2 text-gray-300 hover:text-white transition-all group"
-            >
-              <span className="relative z-10">Work</span>
-              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-orange-400 to-red-600 origin-left transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-            </a>
-            <a
-              href="#contact"
-              onClick={(e) => scrollToSection(e, 'contact')}
-              className="relative px-4 py-2 text-gray-300 hover:text-white transition-all group"
-            >
-              <span className="relative z-10">Contact</span>
-              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-orange-400 to-red-600 origin-left transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-            </a>
+            {['about', 'work', 'contact'].map((section) => (
+              <a
+                key={section}
+                href={`#${section}`}
+                onClick={(e) => scrollToSection(e, section)}
+                className="relative px-4 py-2 text-gray-300 hover:text-white transition-all group"
+              >
+                <span className="relative z-10 capitalize">{section}</span>
+                <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-orange-400 to-red-600 origin-left transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+              </a>
+            ))}
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={handleNav}
             className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
+            aria-label="Toggle menu"
           >
             {nav ? (
-              <AiOutlineClose className="w-6 h-6 text-orange-400" />
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
             ) : (
-              <AiOutlineMenu className="w-6 h-6 text-gray-300" />
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
             )}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Right Sidebar with Glowy Gradient */}
       <div
-        className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-2xl transition-transform duration-500 ease-in-out ${
-          nav ? 'translate-x-0' : 'translate-x-full'
-        }`}
+        className={`fixed top-0 right-0 h-screen z-50 transform transition-transform duration-300 ease-in-out
+          w-[70vw] rounded-l-3xl
+          bg-gradient-to-br from-orange-400 via-yellow-300 to-red-600
+          shadow-lg drop-shadow-xl
+          backdrop-blur-md
+          ${
+            nav ? 'translate-x-0' : 'translate-x-full'
+          }
+        `}
       >
-        <div className="flex flex-col items-center justify-center h-full space-y-8">
-          <a
-            href="#home"
-            onClick={(e) => scrollToSection(e, 'home')}
-            className="text-3xl font-medium text-gray-300 hover:text-orange-400 transition-colors"
-          >
-            Home
-          </a>
-          <a
-            href="#about"
-            onClick={(e) => scrollToSection(e, 'about')}
-            className="text-3xl font-medium text-gray-300 hover:text-orange-400 transition-colors"
-          >
-            About
-          </a>
-          <a
-            href="#work"
-            onClick={(e) => scrollToSection(e, 'work')}
-            className="text-3xl font-medium text-gray-300 hover:text-orange-400 transition-colors"
-          >
-            Work
-          </a>
-          <a
-            href="#contact"
-            onClick={(e) => scrollToSection(e, 'contact')}
-            className="text-3xl font-medium text-gray-300 hover:text-orange-400 transition-colors"
-          >
-            Contact
-          </a>
-        </div>
-      </div>
+        {/* Close Button */}
+        <button
+          onClick={handleNav}
+          className="absolute top-6 right-6 text-white hover:text-black transition-colors"
+          aria-label="Close menu"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
 
-      {/* Animated Border */}
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-orange-400/50 to-transparent" />
+        <nav className="flex flex-col justify-center items-center h-full space-y-10 text-white text-2xl font-semibold px-8">
+          {['home', 'about', 'work', 'contact'].map((section) => (
+            <a
+              key={section}
+              href={`#${section}`}
+              onClick={(e) => scrollToSection(e, section)}
+              className="hover:text-black transition-colors"
+            >
+              {section.charAt(0).toUpperCase() + section.slice(1)}
+            </a>
+          ))}
+        </nav>
+      </div>
     </nav>
   );
 };
