@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import logo from '../assets/favicon.png';
 
 const Navbar = () => {
@@ -35,7 +36,7 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        scroll ? 'bg-black/90 shadow-md py-2' : 'bg-black/60 py-3'
+        scroll ? 'backdrop-blur-xl bg-black/80 py-3' : 'backdrop-blur-lg bg-black/40 py-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -81,13 +82,9 @@ const Navbar = () => {
             aria-label="Toggle menu"
           >
             {nav ? (
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              <AiOutlineClose className="w-6 h-6 text-orange-400" />
             ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+              <AiOutlineMenu className="w-6 h-6 text-gray-300" />
             )}
           </button>
         </div>
@@ -105,18 +102,14 @@ const Navbar = () => {
           }
         `}
       >
-        {/* Close Button */}
         <button
           onClick={handleNav}
-          className="absolute top-6 right-6 text-white hover:text-black transition-colors"
+          className="self-end m-6 text-white text-3xl hover:text-black transition-colors"
           aria-label="Close menu"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
+          <AiOutlineClose />
         </button>
-
-        <nav className="flex flex-col justify-center items-center h-full space-y-10 text-white text-2xl font-semibold px-8">
+        <nav className="flex flex-col justify-center items-center h-[calc(100vh-72px)] space-y-10 text-white text-2xl font-semibold px-8">
           {['home', 'about', 'work', 'contact'].map((section) => (
             <a
               key={section}
