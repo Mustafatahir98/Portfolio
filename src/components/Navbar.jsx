@@ -13,7 +13,7 @@ const Navbar = () => {
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setNav(false); // Close mobile menu after click
+      setNav(false);
     }
   };
 
@@ -24,6 +24,15 @@ const Navbar = () => {
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  // Optional: Disable body scroll when nav open
+  useEffect(() => {
+    if (nav) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [nav]);
 
   return (
     <nav
@@ -82,20 +91,26 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Fullscreen Overlay */}
       <div
-        className={`fixed top-0 right-0 bottom-0 w-64 z-50 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed inset-0 z-50 flex flex-col bg-[#fcac72] transform transition-transform duration-300 ease-in-out ${
           nav ? 'translate-x-0' : 'translate-x-full'
         }`}
-        style={{ backgroundColor: '#fcac72' }}
       >
-        <nav className="flex flex-col mt-24 space-y-6 px-6">
+        <button
+          onClick={handleNav}
+          className="self-end p-4 text-white text-3xl hover:text-black transition-colors"
+          aria-label="Close menu"
+        >
+          <AiOutlineClose />
+        </button>
+        <nav className="flex flex-col flex-grow justify-center items-center space-y-10 text-white text-2xl font-semibold">
           {['home', 'about', 'work', 'contact'].map((section) => (
             <a
               key={section}
               href={`#${section}`}
               onClick={(e) => scrollToSection(e, section)}
-              className="text-xl font-semibold text-white hover:text-black transition-colors"
+              className="hover:text-black transition-colors"
             >
               {section.charAt(0).toUpperCase() + section.slice(1)}
             </a>
