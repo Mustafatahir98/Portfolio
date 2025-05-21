@@ -25,7 +25,7 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Optional: Disable body scroll when nav open
+  // Disable body scroll when mobile menu is open
   useEffect(() => {
     if (nav) {
       document.body.style.overflow = 'hidden';
@@ -96,6 +96,7 @@ const Navbar = () => {
         className={`fixed inset-0 z-50 flex flex-col bg-[#fcac72] transform transition-transform duration-300 ease-in-out ${
           nav ? 'translate-x-0' : 'translate-x-full'
         }`}
+        style={{ height: '100vh' }}
       >
         <button
           onClick={handleNav}
