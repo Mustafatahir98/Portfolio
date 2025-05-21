@@ -2,13 +2,24 @@ import React from 'react';
 import aboutImg from '../assets/about-4.jpg'; // Using the original image reference
 
 const About = () => {
-  const skills = [
-    { name: 'WordPress/PHP' },
-    { name: 'MERN Stack' },
-    { name: 'Python/Flask' },
-    { name: 'OAuth 2.0' },
-    { name: 'Server Management' },
-    { name: 'API Integration' },
+  // Skills organized by category
+  const skillCategories = [
+    {
+      category: "Backend Development",
+      skills: ["Python (Flask/Django)", "WordPress & PHP Development", "Node.js & Express.js", "Database Management (MongoDB, MySQL)"]
+    },
+    {
+      category: "Frontend Development",
+      skills: ["React.js (MERN Stack)", "JavaScript, HTML, CSS", "UI/UX Best Practices", "Responsive Design"]
+    },
+    {
+      category: "Authentication & APIs",
+      skills: ["OAuth 2.0 Authentication", "JWT & Token-based Authentication", "OAuth 2.0 & OpenID Connect", "API Integration (REST/GraphQL)"]
+    },
+    {
+      category: "DevOps & Server Management",
+      skills: ["Linux Server Management", "Docker & Containerization", "Cloud Deployment (AWS, Azure)", "Third-party OAuth Providers"]
+    }
   ];
 
   const achievements = [
@@ -74,19 +85,31 @@ const About = () => {
               I bridge the gap between technical excellence and business value through innovative, robust, and scalable solutions.
             </p>
 
-            {/* Skills showcase without percentages */}
-            <div className="space-y-6">
-              <h4 className="text-xl font-semibold text-white">Core Expertise</h4>
-              <div className="grid grid-cols-2 gap-4">
-                {skills.map((skill, index) => (
-                  <div 
-                    key={index}
-                    className="p-4 rounded-xl border border-white/10 bg-black/30 backdrop-blur-sm hover:border-orange-400/40 hover:bg-black/40 transition-all group"
-                  >
-                    <span className="text-gray-300 group-hover:text-orange-400 transition-colors font-medium">
-                      {skill.name}
-                    </span>
-                    <div className="mt-2 h-1 bg-gradient-to-r from-orange-400 to-red-600 rounded-full transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+            {/* Skills showcase - reorganized by category */}
+            <div className="space-y-8">
+              <h4 className="text-xl font-semibold text-white">Technical Expertise</h4>
+              
+              <div className="space-y-6">
+                {skillCategories.map((category, catIndex) => (
+                  <div key={catIndex} className="space-y-3">
+                    <h5 className="text-orange-400 font-medium border-b border-orange-500/20 pb-1 mb-2">
+                      {category.category}
+                    </h5>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {category.skills.map((skill, skillIndex) => (
+                        <div 
+                          key={skillIndex}
+                          className="p-3 rounded-lg bg-black/20 backdrop-blur-sm border border-white/5 hover:border-orange-400/30 hover:bg-black/30 transition-all group"
+                        >
+                          <div className="flex items-center">
+                            <div className="w-2 h-2 rounded-full bg-orange-500 opacity-60 mr-2 group-hover:opacity-100 transition-opacity" />
+                            <span className="text-gray-300 group-hover:text-orange-300 transition-colors text-sm">
+                              {skill}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 ))}
               </div>
