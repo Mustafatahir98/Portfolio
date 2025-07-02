@@ -83,7 +83,7 @@ const Hero = () => {
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mt-12">
             <a
-              href="https://drive.google.com/file/d/1ke9JYe_oFKXzc91tAEv70zoKrvKp0ta3/view?usp=sharing"
+              href="https://drive.google.com/file/d/12v1SkH4rwaGkRqMoblUMFySKEbhBws6L/view"
               download
               className="relative px-8 py-4 rounded-full text-white font-medium flex items-center gap-3 group overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/20"
             >
