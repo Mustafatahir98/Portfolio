@@ -11,10 +11,80 @@ import proj12 from '../assets/proj12.png';
 import proj13 from '../assets/proj13.jpg';
 import proj14 from '../assets/proj14.jpg';
 import proj15 from '../assets/proj15.jpg';
+import proj16 from '../assets/proj16.jpg';
+import proj17 from '../assets/proj17.jpg';
+import proj18 from '../assets/proj18.jpg';
+import proj19 from '../assets/proj19.jpg';
+import proj20 from '../assets/proj20.jpg';
+import proj21 from '../assets/proj21.jpg';
+import proj22 from '../assets/proj22.jpg';
 
 const Work = () => {
   const [visibleProjects, setVisibleProjects] = useState(4);
   const projects = [
+    {
+      img: proj16,
+      title: "Personal Drivers",
+      frameworks: "WordPress",
+      styling: "Custom CSS & Plugins",
+      tools: "Elementor, WPForms",
+      description: "Professional driving service website with booking features.",
+      link: "https://www.personaldrivers.com/"
+    },
+    {
+      img: proj17,
+      title: "Lotus Psychiatry and Wellness",
+      frameworks: "WordPress",
+      styling: "Elementor, CSS",
+      tools: "WPForms, RankMath",
+      description: "A clean and elegant psychiatry & wellness clinic site.",
+      link: "https://lotuspsychiatryandwellness.com/"
+    },
+    {
+      img: proj18,
+      title: "Soho Tech Services",
+      frameworks: "WordPress",
+      styling: "Elementor, CSS",
+      tools: "Yoast SEO, WPForms",
+      description: "Technology services company website with sleek design.",
+      link: "https://sohotechservices.com/"
+    },
+    {
+      img: proj19,
+      title: "Soho Ad Labs",
+      frameworks: "WordPress",
+      styling: "Elementor, Custom CSS",
+      tools: "Contact Form 7",
+      description: "Advertising and marketing solutions website.",
+      link: "https://sohoadlabs.com/"
+    },
+    {
+      img: proj20,
+      title: "Lotus Laboratories",
+      frameworks: "WordPress",
+      styling: "Elementor, CSS",
+      tools: "WPForms, SEO Plugins",
+      description: "Medical lab services platform with lab info & contact forms.",
+      link: "https://lotus-laboratories.com/"
+    },
+    {
+      img: proj21,
+      title: "Marovis",
+      frameworks: "WordPress",
+      styling: "Elementor, CSS",
+      tools: "WPForms, RankMath",
+      description: "Product-based site showcasing innovative tools.",
+      link: "https://marovis.com/"
+    },
+    {
+      img: proj22,
+      title: "Professional Drivers",
+      frameworks: "WordPress",
+      styling: "Elementor, CSS",
+      tools: "Contact Form 7, Yoast SEO",
+      description: "Another domain for driver booking services.",
+      link: "https://www.professionaldrivers.com/"
+    },
     {
       img: proj1,
       title: "Virtual Reality Frontend APP",
@@ -122,34 +192,6 @@ const Work = () => {
       tools: "Visual Studio Code",
       description: "An integration tool that sends SMS messages upon form submission using SalesMessage API.",
       link: ""
-    },
-    {
-      title: "Personal Drivers",
-      link: "https://www.personaldrivers.com/"
-    },
-    {
-      title: "Lotus Psychiatry and Wellness",
-      link: "https://lotuspsychiatryandwellness.com/"
-    },
-    {
-      title: "Soho Tech Services",
-      link: "https://sohotechservices.com/"
-    },
-    {
-      title: "Soho Ad Labs",
-      link: "https://sohoadlabs.com/"
-    },
-    {
-      title: "Lotus Laboratories",
-      link: "https://lotus-laboratories.com/"
-    },
-    {
-      title: "Marovis",
-      link: "https://marovis.com/"
-    },
-    {
-      title: "Professional Drivers",
-      link: "https://www.professionaldrivers.com/"
     }
   ];
 
