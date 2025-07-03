@@ -26,8 +26,6 @@ const Work = () => {
       img: proj16,
       title: "Personal Drivers",
       frameworks: "WordPress",
-      styling: "Custom CSS & Plugins",
-      tools: "Elementor, WPForms",
       description: "Professional driving service website with booking features.",
       link: "https://www.personaldrivers.com/"
     },
@@ -35,8 +33,6 @@ const Work = () => {
       img: proj17,
       title: "Lotus Psychiatry and Wellness",
       frameworks: "WordPress",
-      styling: "Elementor, CSS",
-      tools: "WPForms, RankMath",
       description: "A clean and elegant psychiatry & wellness clinic site.",
       link: "https://lotuspsychiatryandwellness.com/"
     },
@@ -44,8 +40,6 @@ const Work = () => {
       img: proj18,
       title: "Soho Tech Services",
       frameworks: "WordPress",
-      styling: "Elementor, CSS",
-      tools: "Yoast SEO, WPForms",
       description: "Technology services company website with sleek design.",
       link: "https://sohotechservices.com/"
     },
@@ -53,8 +47,6 @@ const Work = () => {
       img: proj19,
       title: "Soho Ad Labs",
       frameworks: "WordPress",
-      styling: "Elementor, Custom CSS",
-      tools: "Contact Form 7",
       description: "Advertising and marketing solutions website.",
       link: "https://sohoadlabs.com/"
     },
@@ -62,8 +54,6 @@ const Work = () => {
       img: proj20,
       title: "Lotus Laboratories",
       frameworks: "WordPress",
-      styling: "Elementor, CSS",
-      tools: "WPForms, SEO Plugins",
       description: "Medical lab services platform with lab info & contact forms.",
       link: "https://lotus-laboratories.com/"
     },
@@ -71,8 +61,6 @@ const Work = () => {
       img: proj21,
       title: "Marovis",
       frameworks: "WordPress",
-      styling: "Elementor, CSS",
-      tools: "WPForms, RankMath",
       description: "Product-based site showcasing innovative tools.",
       link: "https://marovis.com/"
     },
@@ -80,8 +68,6 @@ const Work = () => {
       img: proj22,
       title: "Professional Drivers",
       frameworks: "WordPress",
-      styling: "Elementor, CSS",
-      tools: "Contact Form 7, Yoast SEO",
       description: "Another domain for driver booking services.",
       link: "https://www.professionaldrivers.com/"
     },
@@ -89,10 +75,8 @@ const Work = () => {
       img: proj1,
       title: "Virtual Reality Frontend APP",
       frameworks: "React JS",
-      styling: "Tailwind CSS",
-      tools: "Visual Studio Code",
       description: "A VR frontend application built with React JS for immersive experiences.",
-      link: ""
+      link: "https://virtualreality-nine.vercel.app/"
     },
     {
       img: proj3,
@@ -101,41 +85,33 @@ const Work = () => {
       styling: "Tailwind CSS",
       tools: "Visual Studio Code, Postman",
       description: "A complete Medicare booking application integrated with Stripe for payments.",
-      link: ""
+      link: "https://medicare-booking-frontend.vercel.app/"
     },
     {
       img: proj5,
       title: "React Js Educational Website",
       frameworks: "React JS, Web3Forms",
-      styling: "CSS3",
-      tools: "Visual Studio Code",
       description: "An educational website built with React JS and Web3Forms for handling user submissions.",
-      link: ""
+      link: "https://edusity-nu.vercel.app/"
     },
     {
       img: proj6,
       title: "Netflix Clone With Firebase Authentication",
       frameworks: "React JS, Firebase",
-      styling: "CSS3",
-      tools: "Visual Studio Code",
       description: "A Netflix clone using Firebase for authentication and TMDB API for movie data.",
-      link: ""
+      link: "https://netflix-clone-psi-three-66.vercel.app/"
     },
     {
       img: proj8,
       title: "Toll & Gas Calculator",
       frameworks: "PHP Core",
-      styling: "CSS & Bootstrap",
-      tools: "Visual Studio Code",
       description: "A toll and gas calculator to estimate costs for road trips using TollGuru and Mapbox APIs.",
-      link: ""
+      link: "https://www.personaldrivers.com/road-trip/tools/gas-calculator/"
     },
     {
       img: proj9,
       title: "Entity Extractor",
       frameworks: "PHP Core",
-      styling: "CSS & Bootstrap",
-      tools: "Visual Studio Code",
       description: "A tool to extract and analyze entities from text using TextRazor and Google Search API.",
       link: ""
     },
@@ -143,8 +119,6 @@ const Work = () => {
       img: proj10,
       title: "Performance Reporting System",
       frameworks: "PHP Core & Node JS",
-      styling: "CSS & Bootstrap",
-      tools: "Visual Studio Code",
       description: "A performance reporting system that integrates PageSpeed API for reporting.",
       link: ""
     },
@@ -152,8 +126,6 @@ const Work = () => {
       img: proj11,
       title: "Image Meta Content Generator",
       frameworks: "Python (Flask)",
-      styling: "CSS & Bootstrap",
-      tools: "Visual Studio Code",
       description: "A tool for generating image metadata using the OpenAI API and other Python libraries.",
       link: ""
     },
@@ -161,8 +133,6 @@ const Work = () => {
       img: proj12,
       title: "NearBy Amtrak Stations Search",
       frameworks: "PHP",
-      styling: "CSS & Bootstrap",
-      tools: "Visual Studio Code",
       description: "A search tool for finding nearby Amtrak stations with easy access to station details.",
       link: ""
     },
@@ -170,8 +140,6 @@ const Work = () => {
       img: proj13,
       title: "Visitor Device Info",
       frameworks: "PHP Core",
-      styling: "CSS & Bootstrap",
-      tools: "Visual Studio Code",
       description: "A tool that collects and displays device information for visitors on the site.",
       link: ""
     },
@@ -179,8 +147,6 @@ const Work = () => {
       img: proj14,
       title: "Scraping Meta Content Tool",
       frameworks: "Node JS",
-      styling: "CSS & Bootstrap",
-      tools: "Visual Studio Code",
       description: "A content scraping tool that gathers meta-information from web pages for analysis.",
       link: ""
     },
