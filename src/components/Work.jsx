@@ -11,13 +11,13 @@ import proj12 from '../assets/proj12.png';
 import proj13 from '../assets/proj13.jpg';
 import proj14 from '../assets/proj14.jpg';
 import proj15 from '../assets/proj15.jpg';
-import proj16 from '../assets/proj16.jpg';
-import proj17 from '../assets/proj17.jpg';
-import proj18 from '../assets/proj18.jpg';
-import proj19 from '../assets/proj19.jpg';
-import proj20 from '../assets/proj20.jpg';
-import proj21 from '../assets/proj21.jpg';
-import proj22 from '../assets/proj22.jpg';
+import proj16 from '../assets/proj16.PNG';
+import proj17 from '../assets/proj17.PNG';
+import proj18 from '../assets/proj18.PNG';
+import proj19 from '../assets/proj19.PNG';
+import proj20 from '../assets/proj20.PNG';
+import proj21 from '../assets/proj21.PNG';
+import proj22 from '../assets/proj22.PNG';
 
 const Work = () => {
   const [visibleProjects, setVisibleProjects] = useState(4);
