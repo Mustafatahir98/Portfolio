@@ -54,7 +54,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-black to-slate-900 relative overflow-hidden pt-16 sm:pt-20">
+    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-black to-slate-900 relative overflow-hidden pt-24 sm:pt-20">
       {/* Optimized animated particles */}
       <div className="absolute inset-0 pointer-events-none">
         {particles.map((particle) => (
@@ -79,9 +79,9 @@ const Hero = () => {
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-red-500/10 to-orange-600/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center px-4 sm:px-6 lg:px-8 py-12 pt-24 sm:pt-32 lg:pt-20 relative z-10">
-        {/* Enhanced Image Container */}
-        <div className="relative w-full max-w-[550px] lg:max-w-[500px] mx-auto order-2 lg:order-1">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12 relative z-10">
+        {/* Enhanced Image Container - Now first on mobile */}
+        <div className="relative w-full max-w-[300px] sm:max-w-[400px] lg:max-w-[500px] mx-auto order-1 lg:order-1 mt-4 sm:mt-0">
           {/* Outer glow ring */}
           <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-red-600 rounded-full blur-2xl opacity-30 animate-pulse" />
           
@@ -104,21 +104,21 @@ const Hero = () => {
           </div>
           
           {/* Floating elements */}
-          <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-orange-400 to-red-500 rounded-full animate-bounce opacity-80" />
-          <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-r from-red-400 to-orange-500 rounded-full animate-bounce opacity-80" style={{ animationDelay: '0.5s' }} />
+          <div className="absolute -top-4 -right-4 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-orange-400 to-red-500 rounded-full animate-bounce opacity-80" />
+          <div className="absolute -bottom-4 -left-4 w-4 h-4 sm:w-6 sm:h-6 bg-gradient-to-r from-red-400 to-orange-500 rounded-full animate-bounce opacity-80" style={{ animationDelay: '0.5s' }} />
         </div>
 
         {/* Enhanced Content Container */}
-        <div className="space-y-6 text-center lg:text-left order-1 lg:order-2">
+        <div className="space-y-4 sm:space-y-6 text-center lg:text-left order-2 lg:order-2">
           <div className="overflow-hidden">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-2 sm:mb-4 tracking-tight">
               <span className="bg-gradient-to-r from-orange-300 via-red-400 to-orange-300 bg-clip-text text-transparent bg-300% animate-gradient">
                 Mustafa Tahir
               </span>
             </h1>
           </div>
 
-          <div className="text-lg sm:text-xl lg:text-2xl font-medium mb-6 min-h-[50px] sm:min-h-[60px] flex items-center justify-center lg:justify-start">
+          <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium mb-4 sm:mb-6 min-h-[40px] sm:min-h-[50px] lg:min-h-[60px] flex items-center justify-center lg:justify-start">
             <TypeAnimation
               sequence={[
                 'Full Stack Developer',
@@ -138,19 +138,19 @@ const Hero = () => {
             />
           </div>
 
-          <p className="text-base sm:text-lg text-gray-300/90 leading-relaxed max-w-xl mx-auto lg:mx-0 font-light">
+          <p className="text-sm sm:text-base lg:text-lg text-gray-300/90 leading-relaxed max-w-xl mx-auto lg:mx-0 font-light">
             Transforming ideas into exceptional digital experiences. 
             <span className="text-orange-400 font-medium"> 4 years of expertise</span> in 
             crafting scalable, high-performance web solutions that drive results.
           </p>
 
           {/* Enhanced Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start pt-6">
+          <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center lg:justify-start pt-4 sm:pt-6">
             <a
               href="https://drive.google.com/file/d/1Z9ZVdLzwomfbAT2T_RdstW1lmjP0LluF/view"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-orange-500 to-red-600 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/30 hover:scale-105 flex items-center gap-3"
+              className="group relative px-5 sm:px-6 md:px-8 py-3 sm:py-4 bg-gradient-to-r from-orange-500 to-red-600 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/30 hover:scale-105 flex items-center gap-2 sm:gap-3 text-sm sm:text-base"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-red-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <span className="relative z-10">Download Resume</span>
@@ -161,26 +161,28 @@ const Hero = () => {
 
             <button
               onClick={handleScrollToContact}
-              className="group relative px-6 sm:px-8 py-3 sm:py-4 text-white font-semibold rounded-full border-2 border-orange-400/40 hover:border-orange-400 transition-all duration-300 hover:shadow-xl hover:shadow-red-500/20 hover:scale-105 flex items-center gap-3"
+              className="group relative px-5 sm:px-6 md:px-8 py-3 sm:py-4 text-white font-semibold rounded-full border-2 border-orange-400/40 hover:border-orange-400 transition-all duration-300 hover:shadow-xl hover:shadow-red-500/20 hover:scale-105 flex items-center gap-2 sm:gap-3 text-sm sm:text-base"
             >
               <span className="relative z-10">Let's Connect</span>
-              <div className="relative z-10 w-3 h-3 bg-green-400 rounded-full animate-pulse" />
+              <div className="relative z-10 w-2 h-2 sm:w-3 sm:h-3 bg-green-400 rounded-full animate-pulse" />
             </button>
           </div>
 
           {/* Enhanced Social Links */}
-          <div className="flex justify-center lg:justify-start gap-4 pt-8 sm:pt-12">
+          <div className="flex justify-center lg:justify-start gap-3 sm:gap-4 pt-6 sm:pt-8 lg:pt-12">
             {socialLinks.map((social, index) => (
               <a 
                 key={social.name}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group p-3 sm:p-4 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 hover:border-orange-400/50 transition-all duration-300 hover:bg-white/10 hover:scale-110 hover:-translate-y-1 shadow-lg hover:shadow-xl"
+                className="group p-2 sm:p-3 lg:p-4 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 hover:border-orange-400/50 transition-all duration-300 hover:bg-white/10 hover:scale-110 hover:-translate-y-1 shadow-lg hover:shadow-xl"
                 style={{ animationDelay: `${index * 150}ms` }}
               >
                 <div className="text-gray-300 group-hover:text-orange-400 transition-colors duration-300">
-                  {social.icon}
+                  <div className="w-5 h-5 sm:w-6 sm:h-6">
+                    {social.icon}
+                  </div>
                 </div>
               </a>
             ))}
