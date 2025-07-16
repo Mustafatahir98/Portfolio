@@ -18,6 +18,13 @@ import proj19 from '../assets/proj19.PNG';
 import proj20 from '../assets/proj20.PNG';
 import proj21 from '../assets/proj21.PNG';
 import proj22 from '../assets/proj22.PNG';
+import proj22 from '../assets/proj23.png';
+import proj22 from '../assets/proj24.png';
+import proj22 from '../assets/proj25.png';
+import proj22 from '../assets/proj26.png';
+import proj22 from '../assets/proj27.png';
+import proj22 from '../assets/proj28.png';
+import proj22 from '../assets/proj29.png';
 
 // Memoized project card component
 const ProjectCard = React.memo(({ project, index }) => (
@@ -100,6 +107,56 @@ const Work = () => {
   // Categorized projects
   const projects = useMemo(() => ({
     wordpress: [
+       {
+        img: proj23,
+        title: "Japanos Dubai",
+        frameworks: "WordPress",
+        description: "Japanos Dubai is a modern Japanese fusion restaurant offering a unique blend of traditional flavors and contemporary dining in the heart of Dubai. Experience sushi, ramen, and street-style dishes with a creative twist.",
+        link: "https://japanosdubai.com/"
+      },
+      {
+  img: proj24,
+  title: "Bike Box MT",
+  frameworks: "WordPress",
+  description: "Bike Box MT offers premium bike storage solutions, parts, and gear for cycling enthusiasts, ensuring protection and convenience for riders across Montana.",
+  link: "https://bikeboxmt.com/"
+},
+{
+  img: proj25,
+  title: "Taskerz",
+  frameworks: "WordPress",
+  description: "Taskerz is a digital agency specializing in smart solutions for web development, branding, and growth marketing tailored for modern businesses.",
+  link: "https://taskerz.com/"
+},
+{
+  img: proj26,
+  title: "Taskerz Fiberglass",
+  frameworks: "WordPress",
+  description: "Taskerz Fiberglass provides high-quality fiberglass fabrication services for industrial, commercial, and residential applications with durability and precision.",
+  link: "https://fiberglass.taskerz.com/"
+},
+{
+  img: proj27,
+  title: "Make Customers for Life",
+  frameworks: "WordPress",
+  description: "Make Customers for Life is a business coaching platform focused on helping entrepreneurs build lasting relationships, grow sales, and scale sustainably.",
+  link: "https://www.makecustomersforlife.com/"
+},
+{
+  img: proj28,
+  title: "Delawalla Biz",
+  frameworks: "WordPress",
+  description: "Delawalla Biz offers strategic consulting and business development services to help entrepreneurs launch, grow, and optimize their ventures successfully.",
+  link: "https://www.delawallabiz.com/"
+},
+{
+  img: proj29,
+  title: "The Perfect Lawn",
+  frameworks: "WordPress",
+  description: "The Perfect Lawn provides professional lawn care, landscaping, and maintenance services, delivering lush, healthy lawns and beautiful outdoor spaces.",
+  link: "https://theperfectlawn1.com/"
+}
+,
       {
         img: proj16,
         title: "Personal Drivers",
