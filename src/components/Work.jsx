@@ -78,6 +78,24 @@ ProjectCard.displayName = 'ProjectCard';
 const Work = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemsPerSlide, setItemsPerSlide] = useState(3);
+
+  // Update items per slide based on screen size
+  React.useEffect(() => {
+    const updateItemsPerSlide = () => {
+      if (window.innerWidth < 768) {
+        setItemsPerSlide(1);
+      } else if (window.innerWidth < 1024) {
+        setItemsPerSlide(2);
+      } else {
+        setItemsPerSlide(3);
+      }
+    };
+
+    updateItemsPerSlide();
+    window.addEventListener('resize', updateItemsPerSlide);
+    return () => window.removeEventListener('resize', updateItemsPerSlide);
+  }, []);
 
   // Categorized projects
   const projects = useMemo(() => ({
@@ -233,7 +251,6 @@ const Work = () => {
     return projects[activeCategory] || [];
   }, [activeCategory, projects]);
 
-  const itemsPerSlide = 3;
   const totalSlides = Math.ceil(currentProjects.length / itemsPerSlide);
 
   const nextSlide = useCallback(() => {
@@ -310,12 +327,12 @@ const Work = () => {
           <div 
             className='flex transition-transform duration-500 ease-in-out'
             style={{ 
-              transform: `translateX(-${currentIndex * 100}%)`,
+              transform: `translateX(-${currentIndex * (100 / totalSlides)}%)`,
               width: `${totalSlides * 100}%`
             }}
           >
             {Array.from({ length: totalSlides }).map((_, slideIndex) => (
-              <div key={slideIndex} className='w-full flex justify-center gap-6'>
+              <div key={slideIndex} className='flex justify-center gap-6' style={{ width: `${100 / totalSlides}%` }}>
                 {currentProjects
                   .slice(slideIndex * itemsPerSlide, (slideIndex + 1) * itemsPerSlide)
                   .map((project, index) => (
