@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import proj1 from '../assets/proj1.jpg';
 import proj3 from '../assets/proj3.jpg';
 import proj5 from '../assets/proj5.jpg';
@@ -26,59 +26,162 @@ import proj27 from '../assets/proj27.png';
 import proj28 from '../assets/proj28.png';
 import proj29 from '../assets/proj29.png';
 
-// Memoized project card component
-const ProjectCard = React.memo(({ project, index }) => (
-  <div className="flex-shrink-0 w-full">
-    <div className="bg-gray-900 rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-3xl border border-gray-800">
-      <div className="relative h-48 sm:h-56 md:h-64 group overflow-hidden">
-        {project.img ? (
-          <img 
-            src={project.img} 
-            alt={project.title}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            loading={index > 3 ? "lazy" : "eager"}
-          />
-        ) : (
-          <div className='bg-gray-800 w-full h-full flex items-center justify-center text-white text-xl font-semibold'>
-            {project.title}
-          </div>
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        <div className="absolute bottom-4 left-4 right-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
-          {project.link && (
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg hover:from-orange-600 hover:to-red-600 transition-all duration-200 font-semibold shadow-lg"
-            >
-              →
-              Visit Site
-            </a>
-          )}
+// Lazy Image Component with Intersection Observer
+const LazyImage = React.memo(({ src, alt, className, priority = false }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isInView, setIsInView] = useState(priority);
+  const [hasError, setHasError] = useState(false);
+  const imgRef = useRef(null);
+
+  useEffect(() => {
+    if (priority) return; // Skip intersection observer for priority images
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '50px 0px', // Load images 50px before they enter viewport
+      }
+    );
+
+    if (imgRef.current) {
+      observer.observe(imgRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [priority]);
+
+  const handleLoad = useCallback(() => {
+    setIsLoaded(true);
+  }, []);
+
+  const handleError = useCallback(() => {
+    setHasError(true);
+    setIsLoaded(true);
+  }, []);
+
+  return (
+    <div ref={imgRef} className={`${className} relative overflow-hidden`}>
+      {/* Placeholder while loading */}
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-gray-800 animate-pulse flex items-center justify-center">
+          <div className="w-8 h-8 border-2 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
         </div>
-      </div>
+      )}
       
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-white mb-3 line-clamp-2">{project.title}</h3>
-        
-        <div className="space-y-3">
-          <div className="flex flex-wrap gap-2">
-            {project.frameworks.split(', ').map((framework, idx) => (
-              <span key={idx} className="px-3 py-1 bg-orange-600/20 text-orange-400 rounded-full text-sm font-medium border border-orange-600/30">
-                {framework}
-              </span>
-            ))}
+      {/* Error state */}
+      {hasError && (
+        <div className="absolute inset-0 bg-gray-800 flex items-center justify-center text-gray-400">
+          <div className="text-center">
+            <div className="text-2xl mb-2">📷</div>
+            <div className="text-sm">Image not available</div>
           </div>
+        </div>
+      )}
+      
+      {/* Actual image */}
+      {(isInView || priority) && (
+        <img
+          src={src}
+          alt={alt}
+          className={`${className} transition-opacity duration-300 ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+          onLoad={handleLoad}
+          onError={handleError}
+          loading={priority ? 'eager' : 'lazy'}
+          decoding="async"
+        />
+      )}
+    </div>
+  );
+});
+
+LazyImage.displayName = 'LazyImage';
+
+// Optimized Project Card Component
+const ProjectCard = React.memo(({ project, index, isVisible }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  
+  // Only render if visible (for virtual scrolling effect)
+  if (!isVisible) {
+    return (
+      <div className="flex-shrink-0 w-full">
+        <div className="bg-gray-900 rounded-2xl h-96 animate-pulse"></div>
+      </div>
+    );
+  }
+
+  return (
+    <div 
+      className="flex-shrink-0 w-full"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="bg-gray-900 rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-3xl border border-gray-800">
+        <div className="relative h-48 sm:h-56 md:h-64 group overflow-hidden">
+          {project.img ? (
+            <LazyImage
+              src={project.img}
+              alt={project.title}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              priority={index < 3} // First 3 images load immediately
+            />
+          ) : (
+            <div className='bg-gray-800 w-full h-full flex items-center justify-center text-white text-xl font-semibold'>
+              {project.title}
+            </div>
+          )}
           
-          <p className="text-gray-300 text-sm leading-relaxed line-clamp-3">
-            {project.description}
-          </p>
+          {/* Hover overlay with better performance */}
+          <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent transition-opacity duration-300 ${
+            isHovered ? 'opacity-100' : 'opacity-0'
+          }`}></div>
+          
+          {/* Action button */}
+          <div className={`absolute bottom-4 left-4 right-4 transform transition-all duration-300 ${
+            isHovered ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+          }`}>
+            {project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg hover:from-orange-600 hover:to-red-600 transition-all duration-200 font-semibold shadow-lg"
+              >
+                →
+                Visit Site
+              </a>
+            )}
+          </div>
+        </div>
+        
+        <div className="p-6">
+          <h3 className="text-xl font-bold text-white mb-3 line-clamp-2">{project.title}</h3>
+          
+          <div className="space-y-3">
+            <div className="flex flex-wrap gap-2">
+              {project.frameworks.split(', ').map((framework, idx) => (
+                <span key={idx} className="px-3 py-1 bg-orange-600/20 text-orange-400 rounded-full text-sm font-medium border border-orange-600/30">
+                  {framework}
+                </span>
+              ))}
+            </div>
+            
+            <p className="text-gray-300 text-sm leading-relaxed line-clamp-3">
+              {project.description}
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-));
+  );
+});
 
 ProjectCard.displayName = 'ProjectCard';
 
@@ -87,27 +190,40 @@ const Work = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerSlide, setItemsPerSlide] = useState(3);
 
-  // Update items per slide based on screen size
-  React.useEffect(() => {
+  // Debounced resize handler
+  const resizeTimeoutRef = useRef(null);
+
+  useEffect(() => {
     const updateItemsPerSlide = () => {
-      if (window.innerWidth < 768) {
-        setItemsPerSlide(1);
-      } else if (window.innerWidth < 1024) {
-        setItemsPerSlide(2);
-      } else {
-        setItemsPerSlide(3);
+      if (resizeTimeoutRef.current) {
+        clearTimeout(resizeTimeoutRef.current);
       }
+      
+      resizeTimeoutRef.current = setTimeout(() => {
+        if (window.innerWidth < 768) {
+          setItemsPerSlide(1);
+        } else if (window.innerWidth < 1024) {
+          setItemsPerSlide(2);
+        } else {
+          setItemsPerSlide(3);
+        }
+      }, 150);
     };
 
     updateItemsPerSlide();
     window.addEventListener('resize', updateItemsPerSlide);
-    return () => window.removeEventListener('resize', updateItemsPerSlide);
+    return () => {
+      window.removeEventListener('resize', updateItemsPerSlide);
+      if (resizeTimeoutRef.current) {
+        clearTimeout(resizeTimeoutRef.current);
+      }
+    };
   }, []);
 
-  // Categorized projects
+  // Memoized and optimized projects data
   const projects = useMemo(() => ({
     wordpress: [
-       {
+      {
         img: proj23,
         title: "Japanos Dubai",
         frameworks: "WordPress",
@@ -115,48 +231,47 @@ const Work = () => {
         link: "https://japanosdubai.com/"
       },
       {
-  img: proj24,
-  title: "Bike Box MT",
-  frameworks: "WordPress",
-  description: "Bike Box MT offers premium bike storage solutions, parts, and gear for cycling enthusiasts, ensuring protection and convenience for riders across Montana.",
-  link: "https://bikeboxmt.com/"
-},
-{
-  img: proj25,
-  title: "Taskerz",
-  frameworks: "WordPress",
-  description: "Taskerz is a digital agency specializing in smart solutions for web development, branding, and growth marketing tailored for modern businesses.",
-  link: "https://taskerz.com/"
-},
-{
-  img: proj26,
-  title: "Taskerz Fiberglass",
-  frameworks: "WordPress",
-  description: "Taskerz Fiberglass provides high-quality fiberglass fabrication services for industrial, commercial, and residential applications with durability and precision.",
-  link: "https://fiberglass.taskerz.com/"
-},
-{
-  img: proj27,
-  title: "Make Customers for Life",
-  frameworks: "WordPress",
-  description: "Make Customers for Life is a business coaching platform focused on helping entrepreneurs build lasting relationships, grow sales, and scale sustainably.",
-  link: "https://www.makecustomersforlife.com/"
-},
-{
-  img: proj28,
-  title: "Delawalla Biz",
-  frameworks: "WordPress",
-  description: "Delawalla Biz offers strategic consulting and business development services to help entrepreneurs launch, grow, and optimize their ventures successfully.",
-  link: "https://www.delawallabiz.com/"
-},
-{
-  img: proj29,
-  title: "The Perfect Lawn",
-  frameworks: "WordPress",
-  description: "The Perfect Lawn provides professional lawn care, landscaping, and maintenance services, delivering lush, healthy lawns and beautiful outdoor spaces.",
-  link: "https://theperfectlawn1.com/"
-}
-,
+        img: proj24,
+        title: "Bike Box MT",
+        frameworks: "WordPress",
+        description: "Bike Box MT offers premium bike storage solutions, parts, and gear for cycling enthusiasts, ensuring protection and convenience for riders across Montana.",
+        link: "https://bikeboxmt.com/"
+      },
+      {
+        img: proj25,
+        title: "Taskerz",
+        frameworks: "WordPress",
+        description: "Taskerz is a digital agency specializing in smart solutions for web development, branding, and growth marketing tailored for modern businesses.",
+        link: "https://taskerz.com/"
+      },
+      {
+        img: proj26,
+        title: "Taskerz Fiberglass",
+        frameworks: "WordPress",
+        description: "Taskerz Fiberglass provides high-quality fiberglass fabrication services for industrial, commercial, and residential applications with durability and precision.",
+        link: "https://fiberglass.taskerz.com/"
+      },
+      {
+        img: proj27,
+        title: "Make Customers for Life",
+        frameworks: "WordPress",
+        description: "Make Customers for Life is a business coaching platform focused on helping entrepreneurs build lasting relationships, grow sales, and scale sustainably.",
+        link: "https://www.makecustomersforlife.com/"
+      },
+      {
+        img: proj28,
+        title: "Delawalla Biz",
+        frameworks: "WordPress",
+        description: "Delawalla Biz offers strategic consulting and business development services to help entrepreneurs launch, grow, and optimize their ventures successfully.",
+        link: "https://www.delawallabiz.com/"
+      },
+      {
+        img: proj29,
+        title: "The Perfect Lawn",
+        frameworks: "WordPress",
+        description: "The Perfect Lawn provides professional lawn care, landscaping, and maintenance services, delivering lush, healthy lawns and beautiful outdoor spaces.",
+        link: "https://theperfectlawn1.com/"
+      },
       {
         img: proj16,
         title: "Personal Drivers",
@@ -288,18 +403,16 @@ const Work = () => {
         link: "https://netflix-clone-psi-three-66.vercel.app/"
       }
     ],
-    nextjs: [
-      // Add Next.js projects here when available
-    ]
+    nextjs: []
   }), []);
 
-  const categories = [
+  const categories = useMemo(() => [
     { id: 'all', label: 'All Projects', count: Object.values(projects).flat().length },
     { id: 'wordpress', label: 'WordPress', count: projects.wordpress.length },
     { id: 'backend', label: 'Backend', count: projects.backend.length },
     { id: 'react', label: 'React JS', count: projects.react.length },
     { id: 'nextjs', label: 'Next JS', count: projects.nextjs.length }
-  ];
+  ], [projects]);
 
   const currentProjects = useMemo(() => {
     if (activeCategory === 'all') {
@@ -369,12 +482,14 @@ const Work = () => {
             <button
               onClick={prevSlide}
               className='absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-gradient-to-r from-orange-500 to-red-500 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110'
+              aria-label="Previous slide"
             >
               ←
             </button>
             <button
               onClick={nextSlide}
               className='absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-gradient-to-r from-orange-500 to-red-500 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110'
+              aria-label="Next slide"
             >
               →
             </button>
@@ -390,9 +505,10 @@ const Work = () => {
           }`}>
             {visibleProjects.map((project, index) => (
               <ProjectCard 
-                key={`${currentIndex}-${index}`} 
+                key={`${activeCategory}-${currentIndex}-${index}`}
                 project={project} 
-                index={currentIndex * itemsPerSlide + index} 
+                index={currentIndex * itemsPerSlide + index}
+                isVisible={true}
               />
             ))}
           </div>
@@ -410,6 +526,7 @@ const Work = () => {
                     ? 'bg-gradient-to-r from-orange-500 to-red-500 scale-125'
                     : 'bg-gray-600 hover:bg-gray-500'
                 }`}
+                aria-label={`Go to slide ${index + 1}`}
               />
             ))}
           </div>
