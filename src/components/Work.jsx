@@ -1,61 +1,73 @@
 import React, { useState, useMemo, useCallback } from 'react';
-import proj1 from '../assets/proj1.jpg';
-import proj3 from '../assets/proj3.jpg';
-import proj5 from '../assets/proj5.jpg';
-import proj6 from '../assets/proj6.jpg';
-import proj8 from '../assets/proj8.PNG';
-import proj9 from '../assets/entity.png';
-import proj10 from '../assets/proj9.jpg';
-import proj11 from '../assets/proj11.jpg';
-import proj12 from '../assets/proj12.png';
-import proj13 from '../assets/proj13.jpg';
-import proj14 from '../assets/proj14.jpg';
-import proj15 from '../assets/proj15.jpg';
-import proj16 from '../assets/proj16.PNG';
-import proj17 from '../assets/proj17.PNG';
-import proj18 from '../assets/proj18.PNG';
-import proj19 from '../assets/proj19.PNG';
-import proj20 from '../assets/proj20.PNG';
-import proj21 from '../assets/proj21.PNG';
-import proj22 from '../assets/proj22.PNG';
+import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
+
+// Mock images for demonstration
+const mockImages = {
+  proj1: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=600&fit=crop',
+  proj3: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop',
+  proj5: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop',
+  proj6: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=800&h=600&fit=crop',
+  proj8: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop',
+  proj9: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop',
+  proj10: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
+  proj11: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=600&fit=crop',
+  proj12: 'https://images.unsplash.com/photo-1544717297-fa95b6ee9643?w=800&h=600&fit=crop',
+  proj13: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&h=600&fit=crop',
+  proj14: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop',
+  proj15: 'https://images.unsplash.com/photo-1563206767-5b18f218e8de?w=800&h=600&fit=crop',
+  proj16: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop',
+  proj17: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop',
+  proj18: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop',
+  proj19: 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=800&h=600&fit=crop',
+  proj20: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=600&fit=crop',
+  proj21: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop',
+  proj22: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop'
+};
 
 // Memoized project card component
 const ProjectCard = React.memo(({ project, index }) => (
-  <div className="transform transition-transform duration-300 hover:scale-105 overflow-hidden shadow-lg shadow-[#040c16] group container rounded-md flex justify-center items-center mx-auto content-div h-[250px] sm:h-[300px] md:h-[400px] bg-cover relative">
-    {project.img ? (
-      <img 
-        src={project.img} 
-        alt={project.title}
-        className="w-full h-full object-cover"
-        loading={index > 3 ? "lazy" : "eager"}
-      />
-    ) : (
-      <div className='bg-gray-900 w-full h-full flex items-center justify-center text-white text-xl font-semibold'>
-        {project.title}
+  <div className="flex-shrink-0 w-full md:w-80 lg:w-96 mx-2">
+    <div className="bg-gray-900 rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-3xl border border-gray-800">
+      <div className="relative h-48 sm:h-56 md:h-64 group overflow-hidden">
+        <img 
+          src={mockImages[`proj${index + 1}`] || mockImages.proj1} 
+          alt={project.title}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          loading={index > 3 ? "lazy" : "eager"}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute bottom-4 left-4 right-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg hover:from-orange-600 hover:to-red-600 transition-all duration-200 font-semibold shadow-lg"
+            >
+              <ExternalLink size={16} />
+              Visit Site
+            </a>
+          )}
+        </div>
       </div>
-    )}
-    <div className="opacity-0 group-hover:opacity-100 bg-black/90 absolute inset-0 flex flex-col justify-center items-center duration-500 ease-in-out transform translate-y-full translate-x-full group-hover:translate-y-0 group-hover:translate-x-0 p-4 md:px-6 shadow-lg m-2 md:m-6 rounded-md">
-      <span className="text-lg md:text-2xl font-bold primary-color tracking-wider text-center text-white mb-2 md:mb-4">
-        {project.title}
-      </span>
-      <ul className="text-sm md:text-base lg:text-lg list-none">
-        <li className="mb-2 text-white pl-6 md:pl-8 relative before:content-['▹'] before:absolute before:left-0 before:text-orange-600 before:text-[24px] md:before:text-[36px]">
-          <span className='mr-2 font-bold text-orange-600'>Frameworks:</span>{project.frameworks}
-        </li>
-        <li className="mb-2 text-white pl-6 md:pl-8 relative before:content-['▹'] before:absolute before:left-0 before:text-orange-600 before:text-[24px] md:before:text-[36px]">
-          <span className='mr-2 font-bold text-orange-600'>Description:</span>{project.description}
-        </li>
-      </ul>
-      {project.link && (
-        <a
-          href={project.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-4 px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 transition-colors duration-200"
-        >
-          Visit Site
-        </a>
-      )}
+      
+      <div className="p-6">
+        <h3 className="text-xl font-bold text-white mb-3 line-clamp-2">{project.title}</h3>
+        
+        <div className="space-y-3">
+          <div className="flex flex-wrap gap-2">
+            {project.frameworks.split(', ').map((framework, idx) => (
+              <span key={idx} className="px-3 py-1 bg-orange-600/20 text-orange-400 rounded-full text-sm font-medium border border-orange-600/30">
+                {framework}
+              </span>
+            ))}
+          </div>
+          
+          <p className="text-gray-300 text-sm leading-relaxed line-clamp-3">
+            {project.description}
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 ));
@@ -63,182 +75,263 @@ const ProjectCard = React.memo(({ project, index }) => (
 ProjectCard.displayName = 'ProjectCard';
 
 const Work = () => {
-  const [visibleProjects, setVisibleProjects] = useState(4);
-  
-  // Memoize projects array to prevent recreation on every render
-  const projects = useMemo(() => [
-    {
-      img: proj16,
-      title: "Personal Drivers",
-      frameworks: "WordPress",
-      description: "Professional driving service website with booking features.",
-      link: "https://www.personaldrivers.com/"
-    },
-    {
-      img: proj17,
-      title: "Lotus Psychiatry and Wellness",
-      frameworks: "WordPress",
-      description: "A clean and elegant psychiatry & wellness clinic site.",
-      link: "https://lotuspsychiatryandwellness.com/"
-    },
-    {
-      img: proj18,
-      title: "Soho Tech Services",
-      frameworks: "WordPress",
-      description: "Technology services company website with sleek design.",
-      link: "https://sohotechservices.com/"
-    },
-    {
-      img: proj19,
-      title: "Soho Ad Labs",
-      frameworks: "WordPress",
-      description: "Advertising and marketing solutions website.",
-      link: "https://sohoadlabs.com/"
-    },
-    {
-      img: proj20,
-      title: "Lotus Laboratories",
-      frameworks: "WordPress",
-      description: "Medical lab services platform with lab info & contact forms.",
-      link: "https://lotus-laboratories.com/"
-    },
-    {
-      img: proj21,
-      title: "Marovis",
-      frameworks: "WordPress",
-      description: "Product-based site showcasing innovative tools.",
-      link: "https://marovis.com/"
-    },
-    {
-      img: proj22,
-      title: "Professional Drivers",
-      frameworks: "WordPress",
-      description: "Another domain for driver booking services.",
-      link: "https://www.professionaldrivers.com/"
-    },
-    {
-      img: proj1,
-      title: "Virtual Reality Frontend APP",
-      frameworks: "React JS",
-      description: "A VR frontend application built with React JS for immersive experiences.",
-      link: "https://virtualreality-nine.vercel.app/"
-    },
-    {
-      img: proj3,
-      title: "MERN Medicare Booking App with Stripe Payment",
-      frameworks: "React JS, Node JS, Express JS",
-      description: "A complete Medicare booking application integrated with Stripe for payments.",
-      link: "https://medicare-booking-frontend.vercel.app/"
-    },
-    {
-      img: proj5,
-      title: "React Js Educational Website",
-      frameworks: "React JS, Web3Forms",
-      description: "An educational website built with React JS and Web3Forms for handling user submissions.",
-      link: "https://edusity-nu.vercel.app/"
-    },
-    {
-      img: proj6,
-      title: "Netflix Clone With Firebase Authentication",
-      frameworks: "React JS, Firebase",
-      description: "A Netflix clone using Firebase for authentication and TMDB API for movie data.",
-      link: "https://netflix-clone-psi-three-66.vercel.app/"
-    },
-    {
-      img: proj8,
-      title: "Toll & Gas Calculator",
-      frameworks: "PHP Core",
-      description: "A toll and gas calculator to estimate costs for road trips using TollGuru and Mapbox APIs.",
-      link: "https://www.personaldrivers.com/road-trip/tools/gas-calculator/"
-    },
-    {
-      img: proj9,
-      title: "Entity Extractor",
-      frameworks: "PHP Core",
-      description: "A tool to extract and analyze entities from text using TextRazor and Google Search API.",
-      link: ""
-    },
-    {
-      img: proj10,
-      title: "Performance Reporting System",
-      frameworks: "PHP Core & Node JS",
-      description: "A performance reporting system that integrates PageSpeed API for reporting.",
-      link: ""
-    },
-    {
-      img: proj11,
-      title: "Image Meta Content Generator",
-      frameworks: "Python (Flask)",
-      description: "A tool for generating image metadata using the OpenAI API and other Python libraries.",
-      link: ""
-    },
-    {
-      img: proj12,
-      title: "NearBy Amtrak Stations Search",
-      frameworks: "PHP",
-      description: "A search tool for finding nearby Amtrak stations with easy access to station details.",
-      link: ""
-    },
-    {
-      img: proj13,
-      title: "Visitor Device Info",
-      frameworks: "PHP Core",
-      description: "A tool that collects and displays device information for visitors on the site.",
-      link: ""
-    },
-    {
-      img: proj14,
-      title: "Scraping Meta Content Tool",
-      frameworks: "Node JS",
-      description: "A content scraping tool that gathers meta-information from web pages for analysis.",
-      link: ""
-    },
-    {
-      img: proj15,
-      title: "CF7 SalesMessage Send SMS on form submission",
-      frameworks: "PHP Core",
-      description: "An integration tool that sends SMS messages upon form submission using SalesMessage API.",
-      link: ""
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Categorized projects
+  const projects = useMemo(() => ({
+    wordpress: [
+      {
+        title: "Personal Drivers",
+        frameworks: "WordPress",
+        description: "Professional driving service website with booking features and secure payment integration.",
+        link: "https://www.personaldrivers.com/"
+      },
+      {
+        title: "Lotus Psychiatry and Wellness",
+        frameworks: "WordPress",
+        description: "A clean and elegant psychiatry & wellness clinic site with appointment booking.",
+        link: "https://lotuspsychiatryandwellness.com/"
+      },
+      {
+        title: "Soho Tech Services",
+        frameworks: "WordPress",
+        description: "Technology services company website with sleek design and service showcases.",
+        link: "https://sohotechservices.com/"
+      },
+      {
+        title: "Soho Ad Labs",
+        frameworks: "WordPress",
+        description: "Advertising and marketing solutions website with portfolio showcase.",
+        link: "https://sohoadlabs.com/"
+      },
+      {
+        title: "Lotus Laboratories",
+        frameworks: "WordPress",
+        description: "Medical lab services platform with lab info & contact forms.",
+        link: "https://lotus-laboratories.com/"
+      },
+      {
+        title: "Marovis",
+        frameworks: "WordPress",
+        description: "Product-based site showcasing innovative IPTV streaming tools.",
+        link: "https://marovis.com/"
+      },
+      {
+        title: "Professional Drivers",
+        frameworks: "WordPress",
+        description: "Another domain for driver booking services with enhanced features.",
+        link: "https://www.professionaldrivers.com/"
+      }
+    ],
+    backend: [
+      {
+        title: "Toll & Gas Calculator",
+        frameworks: "PHP Core",
+        description: "A toll and gas calculator to estimate costs for road trips using TollGuru and Mapbox APIs."
+      },
+      {
+        title: "Entity Extractor",
+        frameworks: "PHP Core",
+        description: "A tool to extract and analyze entities from text using TextRazor and Google Search API."
+      },
+      {
+        title: "Performance Reporting System",
+        frameworks: "PHP Core, Node JS",
+        description: "A performance reporting system that integrates PageSpeed API for comprehensive reporting."
+      },
+      {
+        title: "Image Meta Content Generator",
+        frameworks: "Python, Flask",
+        description: "A tool for generating image metadata using the OpenAI API and other Python libraries."
+      },
+      {
+        title: "NearBy Amtrak Stations Search",
+        frameworks: "PHP",
+        description: "A search tool for finding nearby Amtrak stations with easy access to station details."
+      },
+      {
+        title: "Visitor Device Info",
+        frameworks: "PHP Core",
+        description: "A tool that collects and displays device information for visitors on the site."
+      },
+      {
+        title: "Scraping Meta Content Tool",
+        frameworks: "Node JS",
+        description: "A content scraping tool that gathers meta-information from web pages for analysis."
+      },
+      {
+        title: "CF7 SalesMessage SMS Integration",
+        frameworks: "PHP Core",
+        description: "An integration tool that sends SMS messages upon form submission using SalesMessage API."
+      }
+    ],
+    react: [
+      {
+        title: "Virtual Reality Frontend APP",
+        frameworks: "React JS",
+        description: "A VR frontend application built with React JS for immersive virtual reality experiences.",
+        link: "https://virtualreality-nine.vercel.app/"
+      },
+      {
+        title: "MERN Medicare Booking App",
+        frameworks: "React JS, Node JS, Express JS",
+        description: "A complete Medicare booking application integrated with Stripe for secure payments.",
+        link: "https://medicare-booking-frontend.vercel.app/"
+      },
+      {
+        title: "Educational Website",
+        frameworks: "React JS, Web3Forms",
+        description: "An educational website built with React JS and Web3Forms for handling user submissions.",
+        link: "https://edusity-nu.vercel.app/"
+      },
+      {
+        title: "Netflix Clone",
+        frameworks: "React JS, Firebase",
+        description: "A Netflix clone using Firebase for authentication and TMDB API for movie data.",
+        link: "https://netflix-clone-psi-three-66.vercel.app/"
+      }
+    ],
+    nextjs: [
+      // Add Next.js projects here when available
+    ]
+  }), []);
+
+  const categories = [
+    { id: 'all', label: 'All Projects', count: Object.values(projects).flat().length },
+    { id: 'wordpress', label: 'WordPress', count: projects.wordpress.length },
+    { id: 'backend', label: 'Backend', count: projects.backend.length },
+    { id: 'react', label: 'React JS', count: projects.react.length },
+    { id: 'nextjs', label: 'Next JS', count: projects.nextjs.length }
+  ];
+
+  const currentProjects = useMemo(() => {
+    if (activeCategory === 'all') {
+      return Object.values(projects).flat();
     }
-  ], []);
+    return projects[activeCategory] || [];
+  }, [activeCategory, projects]);
 
-  // Memoize visible projects to prevent unnecessary slicing
-  const visibleProjectsData = useMemo(() => 
-    projects.slice(0, visibleProjects), 
-    [projects, visibleProjects]
-  );
+  const itemsPerSlide = 3;
+  const totalSlides = Math.ceil(currentProjects.length / itemsPerSlide);
 
-  // Memoize load more function
-  const loadMoreProjects = useCallback(() => {
-    setVisibleProjects(prev => Math.min(prev + 4, projects.length));
-  }, [projects.length]);
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % totalSlides);
+  }, [totalSlides]);
 
-  const hasMoreProjects = visibleProjects < projects.length;
+  const prevSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
+  }, [totalSlides]);
+
+  const handleCategoryChange = useCallback((category) => {
+    setActiveCategory(category);
+    setCurrentIndex(0);
+  }, []);
+
+  const visibleProjects = useMemo(() => {
+    const start = currentIndex * itemsPerSlide;
+    return currentProjects.slice(start, start + itemsPerSlide);
+  }, [currentProjects, currentIndex, itemsPerSlide]);
 
   return (
-    <div className='max-w-[1200px] mx-auto p-5' id='work'>
-      <div className='pb-8 text-center'>
-        <h2 className='primary-color text-4xl mb-3 font-bold'>Work</h2>
-        <p className='text-white sm:text-lg lg:text-xl'>Check out some of my recent work</p>
-        <div className='mt-4'>
-          <p className='text-orange-600 font-bold text-lg'>"Hover to get details about work"</p>
+    <div className='max-w-7xl mx-auto p-5 bg-gray-950 min-h-screen' id='work'>
+      <div className='pb-12 text-center'>
+        <h2 className='bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent text-5xl mb-4 font-bold'>
+          Portfolio
+        </h2>
+        <p className='text-gray-300 text-lg lg:text-xl mb-8'>
+          Explore my work across different technologies and platforms
+        </p>
+        
+        {/* Category Tabs */}
+        <div className='flex flex-wrap justify-center gap-2 mb-8'>
+          {categories.map((category) => (
+            <button
+              key={category.id}
+              onClick={() => handleCategoryChange(category.id)}
+              className={`px-4 py-2 rounded-full transition-all duration-300 font-medium text-sm sm:text-base ${
+                activeCategory === category.id
+                  ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg transform scale-105'
+                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white'
+              }`}
+            >
+              {category.label}
+              <span className='ml-2 px-2 py-1 bg-gray-700 text-xs rounded-full'>
+                {category.count}
+              </span>
+            </button>
+          ))}
         </div>
       </div>
 
-      <div className='grid sm:grid-cols-1 md:grid-cols-2 gap-6'>
-        {visibleProjectsData.map((project, index) => (
-          <ProjectCard key={index} project={project} index={index} />
-        ))}
+      {/* Slider Container */}
+      <div className='relative'>
+        {/* Navigation Buttons */}
+        {totalSlides > 1 && (
+          <>
+            <button
+              onClick={prevSlide}
+              className='absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-gradient-to-r from-orange-500 to-red-500 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110'
+            >
+              <ChevronLeft size={24} />
+            </button>
+            <button
+              onClick={nextSlide}
+              className='absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-gradient-to-r from-orange-500 to-red-500 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110'
+            >
+              <ChevronRight size={24} />
+            </button>
+          </>
+        )}
+
+        {/* Projects Grid/Slider */}
+        <div className='overflow-hidden mx-12'>
+          <div 
+            className='flex transition-transform duration-500 ease-in-out'
+            style={{ 
+              transform: `translateX(-${currentIndex * 100}%)`,
+              width: `${totalSlides * 100}%`
+            }}
+          >
+            {Array.from({ length: totalSlides }).map((_, slideIndex) => (
+              <div key={slideIndex} className='w-full flex justify-center gap-6'>
+                {currentProjects
+                  .slice(slideIndex * itemsPerSlide, (slideIndex + 1) * itemsPerSlide)
+                  .map((project, index) => (
+                    <ProjectCard 
+                      key={`${slideIndex}-${index}`} 
+                      project={project} 
+                      index={slideIndex * itemsPerSlide + index} 
+                    />
+                  ))}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Pagination Dots */}
+        {totalSlides > 1 && (
+          <div className='flex justify-center mt-8 space-x-2'>
+            {Array.from({ length: totalSlides }).map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentIndex
+                    ? 'bg-gradient-to-r from-orange-500 to-red-500 scale-125'
+                    : 'bg-gray-600 hover:bg-gray-500'
+                }`}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
-      {hasMoreProjects && (
-        <div className="text-center mt-8">
-          <button 
-            onClick={loadMoreProjects} 
-            className="px-4 py-2 bg-gradient-to-br from-orange-500 to-red-500 text-white rounded-full transition-transform duration-200 hover:scale-105"
-          >
-            Load More
-          </button>
+      {/* Empty State */}
+      {currentProjects.length === 0 && (
+        <div className='text-center py-20'>
+          <p className='text-gray-400 text-lg'>No projects found in this category.</p>
+          <p className='text-gray-500 text-sm mt-2'>More projects coming soon!</p>
         </div>
       )}
     </div>
