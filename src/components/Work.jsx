@@ -25,7 +25,7 @@ import proj26 from '../assets/proj26.png';
 import proj27 from '../assets/proj27.png';
 import proj28 from '../assets/proj28.png';
 import proj29 from '../assets/proj29.png';
-import proj29 from '../assets/proj30.png';
+import proj30 from '../assets/proj30.png';
 
 // Lazy Image Component with Intersection Observer
 const LazyImage = React.memo(({ src, alt, className, priority = false }) => {
