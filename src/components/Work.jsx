@@ -21,7 +21,7 @@ import proj22 from '../assets/proj22.PNG';
 
 // Memoized project card component
 const ProjectCard = React.memo(({ project, index }) => (
-  <div className="flex-shrink-0 w-full md:w-80 lg:w-96 mx-2">
+  <div className="flex-shrink-0 w-full">
     <div className="bg-gray-900 rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-3xl border border-gray-800">
       <div className="relative h-48 sm:h-56 md:h-64 group overflow-hidden">
         {project.img ? (
@@ -266,9 +266,11 @@ const Work = () => {
     setCurrentIndex(0);
   }, []);
 
+  // Get visible projects for current slide
   const visibleProjects = useMemo(() => {
-    const start = currentIndex * itemsPerSlide;
-    return currentProjects.slice(start, start + itemsPerSlide);
+    const startIndex = currentIndex * itemsPerSlide;
+    const endIndex = startIndex + itemsPerSlide;
+    return currentProjects.slice(startIndex, endIndex);
   }, [currentProjects, currentIndex, itemsPerSlide]);
 
   return (
@@ -322,27 +324,19 @@ const Work = () => {
           </>
         )}
 
-        {/* Projects Grid/Slider */}
-        <div className='overflow-hidden mx-12'>
-          <div 
-            className='flex transition-transform duration-500 ease-in-out'
-            style={{ 
-              transform: `translateX(-${currentIndex * (100 / totalSlides)}%)`,
-              width: `${totalSlides * 100}%`
-            }}
-          >
-            {Array.from({ length: totalSlides }).map((_, slideIndex) => (
-              <div key={slideIndex} className='flex justify-center gap-6' style={{ width: `${100 / totalSlides}%` }}>
-                {currentProjects
-                  .slice(slideIndex * itemsPerSlide, (slideIndex + 1) * itemsPerSlide)
-                  .map((project, index) => (
-                    <ProjectCard 
-                      key={`${slideIndex}-${index}`} 
-                      project={project} 
-                      index={slideIndex * itemsPerSlide + index} 
-                    />
-                  ))}
-              </div>
+        {/* Projects Grid */}
+        <div className='px-12'>
+          <div className={`grid gap-6 ${
+            itemsPerSlide === 1 ? 'grid-cols-1' : 
+            itemsPerSlide === 2 ? 'grid-cols-2' : 
+            'grid-cols-3'
+          }`}>
+            {visibleProjects.map((project, index) => (
+              <ProjectCard 
+                key={`${currentIndex}-${index}`} 
+                project={project} 
+                index={currentIndex * itemsPerSlide + index} 
+              />
             ))}
           </div>
         </div>
