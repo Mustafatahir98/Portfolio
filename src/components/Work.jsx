@@ -18,13 +18,13 @@ import proj19 from '../assets/proj19.PNG';
 import proj20 from '../assets/proj20.PNG';
 import proj21 from '../assets/proj21.PNG';
 import proj22 from '../assets/proj22.PNG';
-import proj22 from '../assets/proj23.png';
-import proj22 from '../assets/proj24.png';
-import proj22 from '../assets/proj25.png';
-import proj22 from '../assets/proj26.png';
-import proj22 from '../assets/proj27.png';
-import proj22 from '../assets/proj28.png';
-import proj22 from '../assets/proj29.png';
+import proj23 from '../assets/proj23.png';
+import proj24 from '../assets/proj24.png';
+import proj25 from '../assets/proj25.png';
+import proj26 from '../assets/proj26.png';
+import proj27 from '../assets/proj27.png';
+import proj28 from '../assets/proj28.png';
+import proj29 from '../assets/proj29.png';
 
 // Memoized project card component
 const ProjectCard = React.memo(({ project, index }) => (
