@@ -25,6 +25,7 @@ import proj26 from '../assets/proj26.png';
 import proj27 from '../assets/proj27.png';
 import proj28 from '../assets/proj28.png';
 import proj29 from '../assets/proj29.png';
+import proj29 from '../assets/proj30.png';
 
 // Lazy Image Component with Intersection Observer
 const LazyImage = React.memo(({ src, alt, className, priority = false }) => {
@@ -272,6 +273,14 @@ const Work = () => {
         description: "The Perfect Lawn provides professional lawn care, landscaping, and maintenance services, delivering lush, healthy lawns and beautiful outdoor spaces.",
         link: "https://theperfectlawn1.com/"
       },
+      {
+  img: proj30,
+  title: "Best Biz Tech",
+  frameworks: "WordPress",
+  description: "Best Biz Tech is a tech-focused business consulting firm offering innovative solutions in IT, automation, and digital transformation for small to mid-sized enterprises.",
+  link: "https://www.bestbiztech.com/"
+}
+,
       {
         img: proj16,
         title: "Personal Drivers",
